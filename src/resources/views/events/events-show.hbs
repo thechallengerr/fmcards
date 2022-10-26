@@ -1,0 +1,110 @@
+<style>
+    .event-list .event-container {
+        position: relative;
+        transition: all .3s ease-in-out;
+    }
+
+    .event-list .event-container:hover {
+        text-decoration: none !important;
+        color: #fff;
+    }
+
+    .event-container .blurred-bg {
+
+
+        /* Add the blur effect */
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .event-container .event-wrapper {
+
+        width: 100%;
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        text-align: center;
+
+    }
+
+    .event-wrapper .wrapper-body {
+        border: 1px solid #e4e4e4;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .wrapper-body .event-image {
+        padding: 16px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 2;
+        /* Black w/opacity/see-through */
+
+    }
+
+    .event-image img {}
+
+    .wrapper-body .event-name {
+
+        color: #fff;
+        font-weight: 700;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        z-index: 1;
+        font-size: 20px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin: 0;
+    }
+
+
+    .wrapper-body .blackbar {
+        height: 30%;
+        width: 100%;
+
+        background-color: rgba(26, 33, 64, .8);
+        border-radius: 0 0 6px 6px;
+
+        z-index: 0;
+
+    }
+</style>
+<div class="section" id="lastest-event">
+    <div class="section-heading mb-3">
+        <h3 class="text-center">Lastest event</h3>
+    </div>
+    <div class="event-list">
+        {{#each events}}
+        <a class="event-container " href="events/{{this.event_slug}}">
+            <div class="blurred-bg" style="background-image: url( {{this.event_thumb}});"></div>
+            <div class="event-wrapper">
+                <div class="wrapper-body">
+                    <div class="event-image">
+                        <img height="75" src="{{this.event_thumb}}">
+                    </div>
+                    <div class="blackbar">
+                        <p class="event-name text-white">{{this.event_shortname}}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {{/each}}
+    </div>
+</div>

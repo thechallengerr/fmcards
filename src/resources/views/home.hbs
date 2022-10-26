@@ -1,1 +1,27 @@
-<h1>Helllllllll</h1>
+<div class="home">
+    <div class="section" id="lastest-card">
+        <div class="section-heading">
+            <h4 class=" text-white">Lastest Card</h4>
+        </div>
+        <div class="card-list">
+            {{#each cards}}
+            {{>lastest-card background=background playerImg=playerImg flag=flag
+            event=event pos=pos rating=rating playerName=playerName}}
+            {{/each}}
+        </div>
+
+    </div>
+    <div class="section" id="lastest-event">
+        <div class="section-heading mb-3">
+            <h4>Lastest event</h4>
+        </div>
+        <div class="event-list">
+            {{#each events}}
+            {{>lastest-event event_slug=event_slug event_thumb=event_thumb event_shortname=event_shortname}}
+            {{/each}}
+
+        </div>
+
+    </div>
+
+</div>

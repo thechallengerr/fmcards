@@ -1,5 +1,277 @@
+@font-face {
+    font-family: "DINProCondBold";
+    src: url("../font/DINPro-CondBold.woff") ;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "posteramabold";
+    src: url("../font/Posterama-Bold.ttf") ;
+}
+
+@font-face {
+    font-family: "DINProBold";
+    src: url("../font/DINPro-Bold.woff") ;
+}
+
+body {
+
+    background-color: #262c49;
+}
+.app {
+    font-family: 'DINProCondBold';
+    color: #fff;
+}
+
+.home {
+    background-color: #10163a;
+    border-radius: 16px;
+}
+
+ .section {
+    margin-top: 16px;
+    margin-bottom: 48px;
+    padding: 32px;
+   
+}
+
+.section .section-heading {
+    color: #fff;
+    text-transform: uppercase;
+    border-bottom: 1px solid #fff;
+}
+
+.card-list, .event-list {
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(90px, auto);
+    grid-gap: 10px;
+}
+
+.event-list {
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 64px;
+}
+.card-list .card-container {
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.card-container .card-sm {
+    width: 128px;
+    height: 128px;
+    position: relative;
+    line-height: 1.2;
+}
+
+.card-container .card-wrapper {
+    width: 128px;
+    height: 128px;
+    position: relative;
+    line-height: 1.2;
+    margin: auto;
+
+}
+
+.card-wrapper .card-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.card-wrapper .player-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.card-wrapper .event-image {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: 37%;
+    left: 23%;
+}
+
+.card-wrapper .event-sm-image {
+    width: 19px;
+    height: 19px;
+}
+
+.card-wrapper .nation-image {
+    width: 30.1px;
+    height: 18px;
+    position: absolute;
+    top: 55%;
+    left: 24.5%;
+
+}
+
+.card-wrapper .nation-sm-image {
+    width: 15.05px;
+    height: 9px;
+    position: absolute;
+    top: 55%;
+    left: 24.5%;
+
+}
+
+.card-wrapper span {
+    position: absolute;
+    color: #fff;
+}
+
+.card-wrapper .player-name {
+    font-family: 'posteramabold';
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    width: 100%;
+    top: 68%;
+    left: 0;
+    white-space: nowrap;
+}
+
+.card-wrapper .player-position {
+    font-family: 'posteramabold';
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 8.5px;
+    top: 26%;
+    left: 21%;
+    width: 19.5%;
+}
+
+.card-wrapper .player-rating {
+    font-family:'DINProCondBold';
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 25px;
+    top: 6%;
+    left: 23%;
+}
+
+.section .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 64px;
+    position: relative;
+}
+
+.button .btn-show {
+    position: absolute;
+    margin-top: 32px;
+    margin-right: auto;
+    width: 100px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff !important;
+    font-size: 16px;
+    font-family: "DINProBold";
+    text-align: center;
+    padding: 8px;
+    background-color: #7367f0;
+    border: none;
+    border-radius: 6px;
+}
+
+// EVents CSS
+
+.event-list .event-container {
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+.event-list .event-container:hover {
+    text-decoration: none !important;
+    color: #fff;
+}
+
+.event-container .blurred-bg {
 
 
-.error {
-    display: none;
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.event-container .event-wrapper {
+
+    width: 100%;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+
+}
+
+.event-wrapper .wrapper-body {
+    border: 1px solid #e4e4e4;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.wrapper-body .event-image {
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+    /* Black w/opacity/see-through */
+
+}
+
+.event-image img {}
+
+.wrapper-body .event-name {
+
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    z-index: 1;
+
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 0;
+}
+
+
+.wrapper-body .blackbar {
+    height: 30%;
+    width: 100%;
+
+    background-color: rgba(26, 33, 64, .8);
+    border-radius: 0 0 6px 6px;
+
+    z-index: 0;
+
 }

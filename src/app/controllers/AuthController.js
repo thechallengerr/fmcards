@@ -1,5 +1,5 @@
 const { mongooseToMultipleObjects } = require('../../util/mongoose.js');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User');
 
@@ -20,9 +20,10 @@ class AuthController {
         const formData = req.body;
         console.log(formData);
         User.findOne({ username: formData.username }, (err, user) => {
+            if (err) throw err;
             if (user === null) {
-                console.log(user);
-                User.create(formData, function (err) {
+                if (err) throw err;
+                User.create({ username: formData.username, password: formData.password }, function (err) {
                     if (err) return handleError(err);
 
                 });
@@ -40,26 +41,32 @@ class AuthController {
     signin(req, res, next) {
         const formData = req.body;
         console.log(formData);
+
         User.findOne({ username: formData.username }, function (err, user) {
             if (err) throw err;
-            console.log(user.password);
+            console.log(user);
+            if (!user) {
+                res.send('Username not found');
+                return;
+            }
+            // bcrypt.genSalt(10, function (err, salt) {
 
+            //     bcrypt.hash(formData.password, salt, function (err, hash) {
+            //         console.log(hash);
+            //         console.log(user.password);
 
-            user.comparePassword(formData.password, function (err, isMatch) {
-                if (err) throw err;
+            //     });
+            // });
+            bcrypt.compare(formData.password, user.password, (err, isMatch) => {
                 console.log(isMatch);
-                if (isMatch) {
-                    res.redirect('/');
+                if (!isMatch) {
+                    res.send('Password incorrect');
+                    return;
                 } else {
-                    res.send('Username or password incorrect');
+                    res.redirect('/');
                 }
-
             });
-            // res.json(user[0]);
-
         });
-
-
 
     }
 

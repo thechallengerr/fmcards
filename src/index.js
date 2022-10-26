@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 const route = require('./routes');
 const db = require('./config/db');
+const Event = require('./app/models/Event');
 
 //connect to db
 db.connect();
@@ -23,8 +24,32 @@ app.use(express.json());
 app.engine('.hbs', handlebars.engine({
     extname: '.hbs',
     defaultLayout: 'main',
-    helpers: require('./config/hbs_helper/helper'),
+    helpers: {
+        async getEventThumb(event_slug) {
+            let event_thumb = Event.findOne({ event_slug: event_slug }).then((event) => {
+                if (event === null) {
+                    return ""
+                } else {
+                    event_thumb = event.event_thumb;
+                }
+
+                return event.event_thumb;
+            }).catch((err) => {
+                console.error(err);
+            });
+
+            // console.log(event_thumb);
+            var res = await event_thumb
+            return res;
+        },
+    }
+
 }));
+
+const hbs = handlebars.create({
+    // Specify helpers which are only registered on this instance.
+
+});
 
 route(app);
 

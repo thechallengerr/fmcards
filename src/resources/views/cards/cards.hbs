@@ -1,0 +1,20 @@
+<div class="section" id="lastest-card">
+    <div class="section-heading">
+        <h2 class="text-center text-white">Lastest Card</h2>
+    </div>
+    <div class="card-list">
+        {{#each cards}}
+        <a class="card-container ">
+            <div class="card-wrapper ">
+                <img src="{{this.background}}" alt="" class="card-image">
+                <img src="{{this.playerImg}}" alt="" class="player-image">
+                <img src="{{this.flag}}" alt="" class="nation-image nation-sm-image">
+                <img src="{{getEventThumb this.event}}" class="event-image event-sm-image">
+                <span class="player-position text-uppercase">{{this.pos}}</span>
+                <span class="player-rating ">{{this.rating}}</span>
+                <span class="player-name" style="transform: scale(0.890411, 1);">{{this.playerName}}</span>
+            </div>
+        </a>
+        {{/each}}
+    </div>
+</div>
