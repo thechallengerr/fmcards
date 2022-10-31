@@ -4,13 +4,14 @@ const ObjectId = Schema.ObjectId;
 
 
 var Card = new Schema({
-    playerImg: { type: String },
-    playerName: { type: String },
+    player_img: { type: String },
+    player_name: { type: String },
     rating: { type: String },
     pos: { type: String },
     flag: { type: String },
     background: { type: String },
     event: { type: String },
+    event_slug: { type: String },
 }, {
     timestamps: true,
     autoIndex: true

@@ -4,10 +4,13 @@
             <h4 class=" text-white">Lastest Card</h4>
         </div>
         <div class="card-list">
-            {{#each cards}}
-            {{>lastest-card background=background playerImg=playerImg flag=flag
-            event=event pos=pos rating=rating playerName=playerName}}
+            {{#each players}}
+            {{>lastest-card _id=_id background=background player_img=player_img flag=flag
+            event=event position=position rating=rating name=name}}
             {{/each}}
+        </div>
+        <div class="text-center">
+            <a href="/cards?page=1" class="show-btn">Show all</a>
         </div>
 
     </div>
@@ -20,6 +23,9 @@
             {{>lastest-event event_slug=event_slug event_thumb=event_thumb event_shortname=event_shortname}}
             {{/each}}
 
+        </div>
+        <div class="mt-5 text-center">
+            <a href="/events" class="show-btn mt-5">Show All</a>
         </div>
 
     </div>

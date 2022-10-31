@@ -2,6 +2,7 @@ const { mongooseToMultipleObjects, mongooseToSignleObject } = require('../../uti
 
 const Card = require('../models/Card');
 const Event = require('../models/Event');
+const Player = require('../models/Player.js');
 
 class adminController {
 
@@ -16,7 +17,7 @@ class adminController {
     }
 
 
-    //[POST] admin/create-card
+    //[GET] admin/create-card
     createEvent(req, res, next) {
         res.render('admin/create-event');
 
@@ -34,24 +35,28 @@ class adminController {
     }
 
 
-    //[POST] admin/create-card
+    //[GET] admin/create-card
     createCard(req, res, next) {
         res.render('admin/create-card');
 
 
     }
 
-    //[POST] auth/signin
+    //[GET] /admin
     index(req, res, next) {
-        Card.find()
-            .then((cards) => {
-                res.render('admin/management',
-                    {
-                        cards: mongooseToMultipleObjects(cards),
-                    })
+        Player.find().sort({ createdAt: -1 }).limit(12).then((playerList) => {
+            Event.find().limit(10)
+                .then((eventsList) => {
 
-            })
-            .catch(next);
+                    res.render('home',
+                        {
+                            events: mongooseToMultipleObjects(eventsList),
+                            players: mongooseToMultipleObjects(playerList)
+                        }
+                    )
+
+                })
+        }).catch(next);
     }
 
 }

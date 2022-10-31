@@ -2,11 +2,14 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
+const helpers = require('handlebars-helpers');
+var math = helpers.math();
+var comparison = helpers.comparison();
 const app = express();
 const port = 3000;
 const route = require('./routes');
 const db = require('./config/db');
-const Event = require('./app/models/Event');
+
 
 //connect to db
 db.connect();
@@ -25,23 +28,12 @@ app.engine('.hbs', handlebars.engine({
     extname: '.hbs',
     defaultLayout: 'main',
     helpers: {
-        async getEventThumb(event_slug) {
-            let event_thumb = Event.findOne({ event_slug: event_slug }).then((event) => {
-                if (event === null) {
-                    return ""
-                } else {
-                    event_thumb = event.event_thumb;
-                }
-
-                return event.event_thumb;
-            }).catch((err) => {
-                console.error(err);
-            });
-
-            // console.log(event_thumb);
-            var res = await event_thumb
-            return res;
+        isGK: function (position) {
+            return position === "GK"
         },
+        isTooLong: function (name) {
+            return name.length > 12
+        }
     }
 
 }));

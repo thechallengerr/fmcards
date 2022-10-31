@@ -1,11 +1,12 @@
-<a class="card-container ">
+<a class="card-container " href="/cards/{{_id}}">
     <div class="card-wrapper ">
         <img src="{{background}}" alt="" class="card-image">
-        <img src="{{playerImg}}" alt="" class="player-image">
+        <img src="{{player_img}}" alt="" class="player-image">
         <img src="{{flag}}" alt="" class="nation-image nation-sm-image">
-        <img src="{{getEventThumb event}}" class="event-image event-sm-image">
-        <span class="player-position text-uppercase">{{pos}}</span>
+        <img src="{{event}}" class="event-image event-sm-image">
+        <span class="player-position text-uppercase">{{position}}</span>
         <span class="player-rating ">{{rating}}</span>
-        <span class="player-name" style="transform: scale(0.890411, 1);">{{playerName}}</span>
+        <span class="player-name"
+            style="{{#if (isTooLong name)}} transform: scale(0.653266, 1); {{else}}transform: scale(0.890411, 1);{{/if}}">{{name}}</span>
     </div>
 </a>

@@ -1,23 +1,27 @@
-<div class="heading">
-    <h2 class="mb-5 mt-5 text-center text-white">Lastest Card</h2>
-</div>
-<div class="section" id="lastest-card">
-    <div class="card-list">
-        {{#each cards}}
-        <a class="card-container ">
-            <div class="card-wrapper ">
-                <img src="{{this.background}}" alt="" class="card-image">
-                <img src="{{this.playerImg}}" alt="" class="player-image">
-                <img src="{{this.flag}}" alt="" class="nation-image nation-sm-image">
-                <img src="{{this.event}}" alt="" class="event-image event-sm-image">
-                <span class="player-position text-uppercase">{{this.pos}}</span>
-                <span class="player-rating ">{{this.rating}}</span>
-                <span class="player-name" style="transform: scale(0.890411, 1);">{{this.playerName}}</span>
-            </div>
-        </a>
-        {{else}}
-        <p class="text-center text-white">No cards found. <a href="admin/create-card">Create a card</a></p>
-        {{/each}}
+<div class="home">
+    <div class="section" id="lastest-card">
+        <div class="section-heading">
+            <h4 class=" text-white">Lastest Card</h4>
+        </div>
+        <div class="card-list">
+            {{#each cards}}
+            {{>lastest-card background=background player_img=player_img flag=flag
+            event=event position=position rating=rating name=name}}
+            {{/each}}
+        </div>
+
+    </div>
+    <div class="section" id="lastest-event">
+        <div class="section-heading mb-3">
+            <h4>Lastest event</h4>
+        </div>
+        <div class="event-list">
+            {{#each events}}
+            {{>lastest-event event_slug=event_slug event_thumb=event_thumb event_shortname=event_shortname}}
+            {{/each}}
+
+        </div>
+
     </div>
 
 </div>

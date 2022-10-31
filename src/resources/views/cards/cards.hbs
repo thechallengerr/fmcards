@@ -1,20 +1,132 @@
-<div class="section" id="lastest-card">
-    <div class="section-heading">
-        <h2 class="text-center text-white">Lastest Card</h2>
-    </div>
-    <div class="card-list">
-        {{#each cards}}
-        <a class="card-container ">
-            <div class="card-wrapper ">
-                <img src="{{this.background}}" alt="" class="card-image">
-                <img src="{{this.playerImg}}" alt="" class="player-image">
-                <img src="{{this.flag}}" alt="" class="nation-image nation-sm-image">
-                <img src="{{getEventThumb this.event}}" class="event-image event-sm-image">
-                <span class="player-position text-uppercase">{{this.pos}}</span>
-                <span class="player-rating ">{{this.rating}}</span>
-                <span class="player-name" style="transform: scale(0.890411, 1);">{{this.playerName}}</span>
-            </div>
-        </a>
-        {{/each}}
+<div class="cards">
+    <div class="section" id="lastest-card">
+        <div class="section-heading">
+            <h2 class="text-center text-white">Lastest Card</h2>
+        </div>
+
+        <nav class="mt-4">
+            <ul class="pagination justify-content-end">
+                <li class="page-item {{#if (lte currentPage 1)}} disabled {{else}} {{/if}}">
+                    <a class="page-link text-white bg-darkpurle" href="/cards?page={{sum currentPage -1}}"
+                        tabindex="-1">Prev</a>
+                </li>
+                <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=1">1</a></li>
+                {{#if (lte currentPage 3)}}
+                <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=2">2</a></li>
+                <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=3">3</a></li>
+                {{/if}}
+                {{#if (gt totalPages 3)}}
+                <li class="page-item">
+                    <a href="#" class="page-link text-white bg-darkpurle" onclick="myFunction()">...</a>
+                </li>
+                {{/if}}
+                {{#if (and (gt currentPage 3) (lt currentPage (sum totalPages -3)))}}
+                <li class="page-item"><a class="page-link text-white bg-darkpurle"
+                        href="/cards?page={{sum currentPage -1}}">{{sum
+                        currentPage -1}}</a></li>
+                <li class="page-item">
+                    <a href="/cards?page={{currentPage}}" class="page-link text-white bg-darkpurle">{{currentPage}}</a>
+                </li>
+                <li class="page-item"><a class="page-link text-white bg-darkpurle"
+                        href="/cards?page={{sum currentPage 1}}">{{sum
+                        currentPage 1}}</a></li>
+                <li class="page-item">
+                    <a href="#" class="page-link text-white bg-darkpurle">...</a>
+                </li>
+                {{else}}
+                <li class="page-item">
+                    <a href="/cards?page={{sum totalPages -2}}" class="page-link text-white bg-darkpurle">{{sum
+                        totalPages -2}}</a>
+                </li>
+                <li class="page-item">
+                    <a href="/cards?page={{sum totalPages -1}}" class="page-link text-white bg-darkpurle">{{sum
+                        totalPages -1}}</a>
+                </li>
+                {{/if}}
+                <li class="page-item">
+                    <a class="page-link text-white bg-darkpurle" href="/cards?page={{totalPages}}">{{totalPages}}</a>
+                </li>
+                <li class="page-item {{#if (gte currentPage totalPages)}} disabled {{else}} {{/if}}">
+                    <a class="page-link text-white bg-darkpurle" href="/cards?page={{sum currentPage 1}}">Next</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="card-list">
+            {{#each players}}
+            <a class="card-container " href="/cards/{{this._id}}">
+                <div class="card-wrapper ">
+                    <img src="{{this.background}}" alt="" class="card-image">
+                    <img src="{{this.player_img}}" alt="" class="player-image">
+                    <img src="{{this.flag}}" alt="" class="nation-image nation-sm-image">
+                    <img src="{{this.event}}" class="event-image event-sm-image">
+                    <span class="player-position text-uppercase">{{this.position}}</span>
+                    <span class="player-rating ">{{this.rating}}</span>
+                    <span class="player-name"
+                        style="{{#if (isTooLong this.name)}} transform: scale(0.653266, 1); {{else}}transform: scale(0.890411, 1);{{/if}}">{{this.name}}</span>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+        <nav class="mt-4">
+            <ul class="pagination justify-content-end">
+                <li class="page-item {{#if (lte currentPage 1)}} disabled {{else}} {{/if}}">
+                    <a class="page-link text-white bg-darkpurle" href="/cards?page={{sum currentPage -1}}"
+                        tabindex="-1">Prev</a>
+                </li>
+                <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=1">1</a></li>
+                {{#if (lte currentPage 3)}}
+                <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=2">2</a></li>
+                <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=3">3</a></li>
+                {{/if}}
+                {{#if (gt totalPages 3)}}
+                <li class="page-item">
+                    <a href="#" class="page-link text-white bg-darkpurle" onclick="myFunction()">...</a>
+                </li>
+                {{/if}}
+                {{#if (and (gt currentPage 3) (lte currentPage (sum totalPages -2)))}}
+                <li class="page-item"><a class="page-link text-white bg-darkpurle"
+                        href="/cards?page={{sum currentPage -1}}">{{sum
+                        currentPage -1}}</a></li>
+                <li class="page-item">
+                    <a href="/cards?page={{currentPage}}" class="page-link text-white bg-darkpurle">{{currentPage}}</a>
+                </li>
+                <li class="page-item"><a class="page-link text-white bg-darkpurle"
+                        href="/cards?page={{sum currentPage 1}}">{{sum
+                        currentPage 1}}</a></li>
+                <li class="page-item">
+                    <a href="#" class="page-link text-white bg-darkpurle">...</a>
+                </li>
+                {{else}}
+                <li class="page-item">
+                    <a href="/cards?page={{sum totalPages -2}}" class="page-link text-white bg-darkpurle">{{sum
+                        totalPages -2}}</a>
+                </li>
+                <li class="page-item">
+                    <a href="/cards?page={{sum totalPages -1}}" class="page-link text-white bg-darkpurle">{{sum
+                        totalPages -1}}</a>
+                </li>
+                {{/if}}
+                <li class="page-item">
+                    <a class="page-link text-white bg-darkpurle" href="/cards?page={{totalPages}}">{{totalPages}}</a>
+                </li>
+                <li class="page-item {{#if (gte currentPage totalPages)}} disabled {{else}} {{/if}}">
+                    <a class="page-link text-white bg-darkpurle" href="/cards?page={{sum currentPage 1}}">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
+
+<script>
+    var pageLinks = document.querySelectorAll('.page-link text-whites');
+    console.log(pageLinks)
+    pageLinks.forEach(pageLink => {
+        pageLink.onclick = function () {
+            pageLink.style.backgroundColor = "#7367f0"
+        }
+    })
+
+    function myFunction(e) {
+        e.preventDefault();
+    }
+</script>

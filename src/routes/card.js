@@ -6,7 +6,7 @@ router.use(cors());
 
 
 
-router.get('/detail', CardController.detail);
+router.get('/:id', CardController.detail);
 
 router.get('/', CardController.index);
 

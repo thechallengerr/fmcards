@@ -1,0 +1,522 @@
+<div class="cards d-flex flex-column" style="padding:32px">
+    {{#with player}}
+    <div class="d-flex flex-row align-items-center justify-content-center">
+        <div class="card-container ">
+            <div class="card-wrapper card-lg">
+                <img src="{{this.background}}" alt="" class="card-image">
+                <img src="{{this.player_img}}" alt="" class="player-image">
+                <img src="{{this.flag}}" alt="" class="nation-image">
+                <img src="{{this.event}}" class="event-image event-lg-image">
+                <span class="player-position player-position-lg text-uppercase">{{this.position}}</span>
+                <span class="player-rating player-rating-lg ">{{this.rating}}</span>
+                <span class="player-name player-name-lg"
+                    style="{{#if (isTooLong this.name)}} transform: scale(0.653266, 1); {{else}}transform: scale(0.890411, 1);{{/if}}">{{this.name}}</span>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="career-container">
+            <h3 class="fullname">{{this.full_name}}</h3>
+            <div class="career-item">
+                <div class="item-left d-flex flex-column justify-content-center">
+                    <span>Club</span>
+                    <span class="club_name">{{this.career.club}}</span>
+                </div>
+                <div class="item-right">
+                    <img src="{{this.career.club_img}}" alt="" height="48" class="club_img">
+                </div>
+            </div>
+            <div class="career-item">
+                <div class="item-left d-flex flex-column justify-content-center">
+                    <span>League</span>
+                    <span class="league_name">{{this.career.league}}</span>
+                </div>
+                <div class="item-right">
+                    <img src="{{this.career.league_img}}" alt="" height="42" class="league_img">
+                </div>
+            </div>
+            <div class="career-item">
+                <div class="item-left d-flex flex-column justify-content-center">
+                    <span>Nation</span>
+                    <span class="club_name">{{this.career.nation}}</span>
+                </div>
+                <div class="item-right">
+                    <img src="{{this.flag}}" alt="" height="24" class="club_img">
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if (isGK this.position)}}
+    <div class="stats d-flex flex-row justify-content-center">
+        <div class="stat-group">
+
+
+            <div class="gauge">
+
+                <div class="gauge__body">
+
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+
+                    <span class="avg">{{floor (avg this.stats.diving_1)}}</span>
+                    <span class="stat-type">Diving</span>
+
+                </div>
+            </div>
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">GK Diving</span>
+                    <span class="stat-data">{{this.stats.diving_1}}</span>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+
+                <div class="gauge__body">
+
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+
+                    <span class="avg">{{floor (avg this.stats.positioning_1 )}}</span>
+                    <span class="stat-type">Positioning</span>
+
+                </div>
+            </div>
+
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">GK Positioning</span>
+                    <span class="stat-data">{{this.stats.positioning_1}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+
+                <div class="gauge__body">
+
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+
+                    <span class="avg">{{floor (avg this.stats.handling_1 )}}</span>
+                    <span class="stat-type">Handling</span>
+
+                </div>
+            </div>
+
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Handling</span>
+                    <span class="stat-data">{{this.stats.handling_1}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+                <div class="gauge__body">
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+                    <span class="avg">{{floor (avg this.stats.reflexes_1 this.stats.reflexes_2 )}}</span>
+                    <span class="stat-type">Reflexes</span>
+                </div>
+            </div>
+
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Reflexes</span>
+                    <span class="stat-data">{{this.stats.reflexes_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Jumping</span>
+                    <span class="stat-data">{{this.stats.reflexes_2}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+                <div class="gauge__body">
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+                    <span class="avg">{{floor (avg this.stats.kicking_1 this.stats.kicking_2 )}}</span>
+                    <span class="stat-type">Kicking</span>
+                </div>
+            </div>
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">GK Kicking</span>
+                    <span class="stat-data">{{this.stats.kicking_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Long Passing</span>
+                    <span class="stat-data">{{this.stats.kicking_2}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="stat-group">
+
+            <div class="gauge">
+
+                <div class="gauge__body">
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+                    <span class="avg">{{floor (avg this.stats.physical_1 this.stats.physical_2
+                        this.stats.physical_3 this.stats.physical_3)}}</span>
+                    <span class="stat-type">Physical</span>
+                </div>
+            </div>
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Reactions</span>
+                    <span class="stat-data">{{this.stats.physical_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Agility</span>
+                    <span class="stat-data">{{this.stats.physical_3}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Sprint Speed</span>
+                    <span class="stat-data">{{this.stats.physical_3}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Strength</span>
+                    <span class="stat-data">{{this.stats.physical_2}}</span>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="stats d-flex flex-row justify-content-center">
+        <div class="stat-group">
+
+
+            <div class="gauge">
+
+                <div class="gauge__body">
+
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+
+                    <span class="avg">{{floor (avg this.stats.pace_1 this.stats.pace_2)}}</span>
+                    <span class="stat-type">Pace</span>
+
+                </div>
+            </div>
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Acceleration</span>
+                    <span class="stat-data">{{this.stats.pace_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Sprint Speed</span>
+                    <span class="stat-data">{{this.stats.pace_2}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+
+                <div class="gauge__body">
+
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+
+                    <span class="avg">{{floor (avg this.stats.shooting_1 this.stats.shooting_2 this.stats.shooting_3
+                        this.stats.shooting_4 this.stats.shooting_5 this.stats.shooting_6)}}</span>
+                    <span class="stat-type">Shooting</span>
+
+                </div>
+            </div>
+
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Positioning</span>
+                    <span class="stat-data">{{this.stats.shooting_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Finising</span>
+                    <span class="stat-data">{{this.stats.shooting_2}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Shot Power</span>
+                    <span class="stat-data">{{this.stats.shooting_3}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Long Shot</span>
+                    <span class="stat-data">{{this.stats.shooting_4}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Volley</span>
+                    <span class="stat-data">{{this.stats.shooting_5}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Penalties</span>
+                    <span class="stat-data">{{this.stats.shooting_6}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+
+                <div class="gauge__body">
+
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+
+                    </div>
+
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+
+                    <span class="avg">{{floor (avg this.stats.passing_1 this.stats.passing_2
+                        this.stats.passing_3
+                        this.stats.passing_4 this.stats.passing_5 this.stats.passing_6)}}</span>
+                    <span class="stat-type">Passing</span>
+
+                </div>
+            </div>
+
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Vision</span>
+                    <span class="stat-data">{{this.stats.passing_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Crossing</span>
+                    <span class="stat-data">{{this.stats.passing_2}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Free kick</span>
+                    <span class="stat-data">{{this.stats.passing_3}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Short Passing</span>
+                    <span class="stat-data">{{this.stats.passing_4}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Long Passing</span>
+                    <span class="stat-data">{{this.stats.passing_5}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Curve</span>
+                    <span class="stat-data">{{this.stats.passing_6}}</span>
+                </div>
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+                <div class="gauge__body">
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+                    <span class="avg">{{floor (avg this.stats.agility_1 this.stats.agility_2 this.stats.agility_3
+                        this.stats.agility_4 this.stats.agility_5 )}}</span>
+                    <span class="stat-type">Agility</span>
+                </div>
+            </div>
+
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Agility</span>
+                    <span class="stat-data">{{this.stats.agility_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Balance</span>
+                    <span class="stat-data">{{this.stats.agility_2}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Reactions</span>
+                    <span class="stat-data">{{this.stats.agility_3}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Ball Control</span>
+                    <span class="stat-data">{{this.stats.agility_4}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Dribbling</span>
+                    <span class="stat-data">{{this.stats.agility_5}}</span>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="stat-group">
+            <div class="gauge">
+                <div class="gauge__body">
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+                    <span class="avg">{{floor (avg this.stats.defending_1 this.stats.defending_2 this.stats.defending_3
+                        this.stats.defending_4 this.stats.defending_5 )}}</span>
+                    <span class="stat-type">Defending</span>
+                </div>
+            </div>
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Interceptions</span>
+                    <span class="stat-data">{{this.stats.defending_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Heading</span>
+                    <span class="stat-data">{{this.stats.defending_2}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Marking</span>
+                    <span class="stat-data">{{this.stats.defending_3}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Standing Tackle</span>
+                    <span class="stat-data">{{this.stats.defending_4}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Sliding Tackle</span>
+                    <span class="stat-data">{{this.stats.defending_5}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="stat-group">
+
+            <div class="gauge">
+
+                <div class="gauge__body">
+                    <div class="gauge__fill"></div>
+                    <div class="gauge__cover">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center" style="position: absolute; top:24px;left: 50%;
+    transform: translateX(-50%);">
+                    <span class="avg">{{floor (avg this.stats.physical_1 this.stats.physical_2
+                        this.stats.physical_3)}}</span>
+                    <span class="stat-type">Physical</span>
+                </div>
+            </div>
+            <div class="stat-detail-list">
+                <div class="stat-detail-item">
+                    <span class="stat-label">Jumping</span>
+                    <span class="stat-data">{{this.stats.physical_1}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Strength</span>
+                    <span class="stat-data">{{this.stats.physical_2}}</span>
+                </div>
+                <div class="stat-detail-item">
+                    <span class="stat-label">Aggression</span>
+                    <span class="stat-data">{{this.stats.physical_3}}</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+{{/with}}
+
+</div>
+
+<script>
+    var statDataList = document.querySelectorAll('.stat-data');
+    var avgs = document.querySelectorAll('.avg');
+    var gaugeElements = document.querySelectorAll(".gauge");
+    var statAvgs = document.querySelectorAll('.gauge__fill');
+    console.log(gaugeElements);
+    //avgs.forEach(avg => console.log(avg.textContent))
+    statDataList.forEach(function (item) {
+        if (item.textContent < 80 && item.textContent >= 70) {
+            item.classList.add('stat-color-good');
+        } else if (item.textContent < 70 && item.textContent >= 60) {
+            item.classList.add('stat-color-average');
+
+        } else if (item.textContent < 60) {
+            item.classList.add('stat-color-bad');
+
+        }
+    });
+    for (let i = 0; i < avgs.length; i++) {
+        if (avgs[i].textContent < 80 && avgs[i].textContent >= 70) {
+            statAvgs[i].classList.add('avg-color-good');
+        } else if (avgs[i].textContent < 70 && avgs[i].textContent >= 60) {
+            statAvgs[i].classList.add('avg-color-average');
+        } else if (avgs[i].textContent < 60) {
+            statAvgs[i].classList.add('avg-color-bad');
+        }
+    }
+
+
+    function setGaugeValue(gauge, value) {
+        if (value < 0 || value > 1) {
+            return;
+        }
+        gauge.querySelector(".gauge__fill").style.transform = `rotate(${value / 2
+            }turn)`;
+
+    }
+    for (let i = 0; i < avgs.length; i++) {
+        console.log(avgs[i].textContent / 140)
+        setTimeout(() => {
+            setGaugeValue(gaugeElements[i], avgs[i].textContent / 140)
+        }, 100)
+    }
+
+
+
+
+
+</script>
