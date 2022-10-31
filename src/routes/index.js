@@ -13,7 +13,9 @@ function route(app) {
 
     app.use("/auth", cardRoute);
     app.use("/home", homeRoute);
-    app.use("/", homeRoute);
+    app.use("/", function (req, res, next) {
+        res.redirect('/home');
+    });
 
 
 }
