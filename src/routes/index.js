@@ -13,6 +13,7 @@ function route(app) {
 
     app.use("/auth", cardRoute);
     app.use("/home", homeRoute);
+    app.use("/", homeRoute);
 
 
 }
