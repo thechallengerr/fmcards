@@ -1,0 +1,226 @@
+[{
+  "_id": {
+    "$oid": "635606a49fa522fd494bb41d"
+  },
+  "event_name": "Kickoff Rivalries",
+  "event_shortname": "Kickoff",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_KICKOFF.png?v=848rffjv3we",
+  "event_slug": "kickoff_22",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666582180607"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666582180607"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "635806c29fa522fd494bb455"
+  },
+  "event_name": "Group Stage Challengers",
+  "event_shortname": "GSC",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_GSC_S6.png?v=848rffjv3we",
+  "event_slug": "gsc_22",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666713282583"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666713282583"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "635823c2c7cb8f799a28dd99"
+  },
+  "event_name": "New Beginnings",
+  "event_shortname": "NewBeginnings",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_NEWBEGINNINGS.png?v=848rffjv3we",
+  "event_slug": "newbeginnings_22",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1666720706038"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1666720706038"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f0"
+  },
+  "event_name": "CAMELOT",
+  "event_shortname": "CAMELOT",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_CAMELOT.png?v=848rffjv3we",
+  "event_slug": "camelot_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f1"
+  },
+  "event_name": "CARNIBALL",
+  "event_shortname": "CARNIBALL",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_CARNIBALL.png?v=848rffjv3we",
+  "event_slug": "carniball_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f2"
+  },
+  "event_name": "EOE",
+  "event_shortname": "EOE",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_EOE.png?v=848rffjv3we",
+  "event_slug": "eoe_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f4"
+  },
+  "event_name": "HEARTBREAKERS",
+  "event_shortname": "HEARTBREAKERS",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_HEARTBREAKERS.png?v=848rffjv3we",
+  "event_slug": "heartbreakers_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f5"
+  },
+  "event_name": "HEROES",
+  "event_shortname": "HEROES",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_HEROES.png?v=848rffjv3we",
+  "event_slug": "heroes_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f6"
+  },
+  "event_name": "ICONS",
+  "event_shortname": "ICONS",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_ICONS.png?v=848rffjv3we",
+  "event_slug": "icons_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f8"
+  },
+  "event_name": "LANTERN",
+  "event_shortname": "LANTERN",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_LANTERN.png?v=848rffjv3we",
+  "event_slug": "lantern_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450f9"
+  },
+  "event_name": "NAL",
+  "event_shortname": "NAL",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_NAL.png?v=848rffjv3we",
+  "event_slug": "nal_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450fa"
+  },
+  "event_name": "NEON NIGHTS",
+  "event_shortname": "NEON NIGHTS",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_NEON_NIGHTS.png?v=848rffjv3we",
+  "event_slug": "neonnights_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450fc"
+  },
+  "event_name": "PVET4",
+  "event_shortname": "PVET4",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_PVET4.png?v=848rffjv3we",
+  "event_slug": "pvet4_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450fd"
+  },
+  "event_name": "SCREAM TEAM",
+  "event_shortname": "SCREAM TEAM",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_SCREAM_TEAM.png?v=848rffjv3we",
+  "event_slug": "screamteam_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450fe"
+  },
+  "event_name": "SPRING",
+  "event_shortname": "SPRING",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_SPRING.png?v=848rffjv3we",
+  "event_slug": "spring_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da8892450ff"
+  },
+  "event_name": "SVE",
+  "event_shortname": "SVE",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_SVE.png?v=848rffjv3we",
+  "event_slug": "sve_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245100"
+  },
+  "event_name": "TOP TRANSFERS",
+  "event_shortname": "TOP TRANSFERS",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_TOP_TRANSFERS.png?v=848rffjv3we",
+  "event_slug": "toptransfers_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245101"
+  },
+  "event_name": "TOTS",
+  "event_shortname": "TOTS",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_TOTS.png?v=848rffjv3we",
+  "event_slug": "tots_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245102"
+  },
+  "event_name": "TOTW",
+  "event_shortname": "TOTW",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_TOTW.png?v=848rffjv3we",
+  "event_slug": "totw_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245103"
+  },
+  "event_name": "TOTY22",
+  "event_shortname": "TOTY22",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_TOTY22.png?v=848rffjv3we",
+  "event_slug": "toty22_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245104"
+  },
+  "event_name": "TROPICAL",
+  "event_shortname": "TROPICAL",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_TROPICAL.png?v=848rffjv3we",
+  "event_slug": "tropical_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245105"
+  },
+  "event_name": "UCL",
+  "event_shortname": "UCL",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_UCL.png?v=848rffjv3we",
+  "event_slug": "ucl_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245106"
+  },
+  "event_name": "UECL",
+  "event_shortname": "UECL",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_GSC_UECL.png?v=848rffjv3we",
+  "event_slug": "uecl_22"
+},{
+  "_id": {
+    "$oid": "6358f06b1aa93da889245107"
+  },
+  "event_name": "UEL",
+  "event_shortname": "UEL",
+  "event_thumb": "https://cdn-p2.frzdb.net/fifamobile/images/programFilters_22/programlogos_S6_UEL.png?v=848rffjv3we",
+  "event_slug": "uel_22"
+}]

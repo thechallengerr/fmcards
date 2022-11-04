@@ -10,7 +10,7 @@ var Player = new Schema({
     event: { type: String },
     event_slug: { type: String },
     flag: { type: String },
-    rating: { type: String },
+    rating: { type: Number },
     position: { type: String },
     name: { type: String },
     stats: {
