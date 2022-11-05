@@ -10,7 +10,6 @@ class CardController {
 
     // [GET] /
     index(req, res, next) {
-        console.log(req.query);
         let skip = (req.query.page - 1) * CARD_PER_PAGE
         let currentPage = req.query.page || 1;
         let positions = [
@@ -51,18 +50,31 @@ class CardController {
         }).catch(next);
         // res.render('cards/card-detail')
     }
-    // POST /cards/search
+    // [POST] /cards/search
     liveSearch(req, res, next) {
         const player_name = req.body.player_name
+        console.log('.*' + player_name + '.*')
         Player.find({
-            name: { $regex: new RegExp('^' + player_name + '.*', 'i') },
-            full_name: { $regex: new RegExp('^' + player_name + '.*', 'i') }
+
+            name: { $regex: new RegExp('.*' + player_name + '.*', 'i') },
         }).sort({ rating: -1 })
             .then(players => {
-
+                // console.log(players)
                 res.status(200).send(JSON.stringify(players))
             })
             .catch(next);
+    }
+
+    //[POST] /cards/filter
+
+    filter(req, res, next) {
+        console.log(req.query);
+
+
+        let skip = (req.query.page - 1) * CARD_PER_PAGE
+        let currentPage = req.query.page || 1;
+        Player.find()
+        res.send('<h3>Completed</h3>');
     }
 
 

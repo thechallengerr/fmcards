@@ -47,7 +47,7 @@ body {
                     }  
                 }
                 #search-result{
-                    height: 300px;
+                    max-height: 300px;
                     overflow-y: scroll;
                     .card-container{
                         color: #fff;
@@ -59,6 +59,9 @@ body {
                         background-color: #10163a;
                         margin: 16px;
                         border-bottom: 1px solid #7777771a;
+                        &:hover {
+                            background-color: #262c49;
+                        }
                     }
                 }
             }
@@ -123,7 +126,7 @@ body {
 }
 .filter-area {
     h3{
-        border-bottom: 1px solid #aaa;
+        
         width: 100%;
         padding-bottom: 8px;
     }
@@ -657,70 +660,3 @@ body {
 
 }
 
-// Card page css 
-
-// .card-stat-list {}
-
-// .card-stat-list .card-container {
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     width: 100%;
-//     margin-bottom: 16px;
-
-// }
-
-// .card-stat-list .card-container:hover {
-//     text-decoration: none !important;
-// }
-
-// .card-stat-list .card-container .card-wrapper {
-//     margin: 0 48px 0 0;
-// }
-
-// .card-container .card-avg-stats {
-//     align-items: center;
-//     color: #fff;
-//     text-decoration: none;
-//     margin: 0 0 0 64px;
-//     width: 36%;
-// }
-
-// .card-avg-stats .stat-group {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     flex-direction: column;
-//     margin: 0 12px;
-//     width: 16.666666%;
-// }
-
-// .stat-group .stat-number {
-//     font-size: 28px;
-// }
-
-// .stat-group .stat-type {
-//     opacity: 0.6;
-// }
-
-// .card-container .card-info {
-//     display: flex;
-//     align-items: center;
-//     justify-content: flex-start;
-//     flex-direction: column;
-//     color: #fff;
-//     text-decoration: none;
-//     margin-left: 64px;
-//     margin-right: 64px;
-//     width: 25%;
-// }
-
-
-// .card-info .full-name {
-//     font-size: 28px;
-// }
-
-// .card-info .club-name {
-//     font-size: 20px;
-
-// }

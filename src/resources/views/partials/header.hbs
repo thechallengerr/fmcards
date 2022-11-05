@@ -36,8 +36,7 @@
                                 </button>
                             </div>
                             <div class="search-input modal-body">
-                                <input type="text" name="player_name" id="playerName" placeholder="Enter players name"
-                                    autofocus>
+                                <input type="text" name="player_name" id="playerName" placeholder="Enter players name">
                             </div>
                             <div class="modal-body" id="search-result">
 
@@ -89,7 +88,7 @@
                 searchResult.innerHTML = '<p>Wrong input</p>';
             }
             if (match[0] === e.target.value) {
-                let player_name = e.target.value.toUpperCase();
+                let player_name = e.target.value
                 fetch('/cards/search', {
                     'method': 'POST',
                     'mode': 'cors',

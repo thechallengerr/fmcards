@@ -30,7 +30,7 @@ body {
     border-radius: 6px;
     padding: 4px; }
   .header-search .modal .modal-dialog .modal-content #search-result {
-    height: 300px;
+    max-height: 300px;
     overflow-y: scroll; }
     .header-search .modal .modal-dialog .modal-content #search-result .card-container {
       color: #fff;
@@ -42,6 +42,8 @@ body {
       background-color: #10163a;
       margin: 16px;
       border-bottom: 1px solid #7777771a; }
+      .header-search .modal .modal-dialog .modal-content #search-result .card-container:hover {
+        background-color: #262c49; }
 
 .home,
 .cards, .events {
@@ -95,7 +97,6 @@ body {
   padding-right: 0;
   padding-left: 0; }
   .filter-area h3 {
-    border-bottom: 1px solid #aaa;
     width: 100%;
     padding-bottom: 8px; }
   .filter-area form {

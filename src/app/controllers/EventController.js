@@ -14,7 +14,7 @@ class EventController {
         var event;
         Event.findOne({ event_slug: req.params.event_slug }).then((e) => {
             event = e;
-            Player.find({ event_slug: req.params.event_slug }).then((players) => {
+            Player.find({ event_slug: req.params.event_slug }).sort({ rating: -1 }).then((players) => {
 
                 res.render('events/event-players',
                     {

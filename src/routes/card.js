@@ -4,6 +4,7 @@ const cors = require('cors');
 const CardController = require('../app/controllers/CardController');
 router.use(cors());
 
+router.get('/filter', CardController.filter);
 
 router.post('/search', CardController.liveSearch);
 
