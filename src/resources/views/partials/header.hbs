@@ -18,6 +18,36 @@
                     <a class="nav-link" href="/events">Events</a>
                 </li>
             </ul>
+            <div class="header-search mr-4">
+
+                <div class="mr-4" data-toggle="modal" data-target="#searchModal">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="searchModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content bg-darkpurple">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Search Players</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" class="text-white">&times;</span>
+                                </button>
+                            </div>
+                            <div class="search-input modal-body">
+                                <input type="text" name="player_name" id="playerName" placeholder="Enter players name"
+                                    autofocus>
+                            </div>
+                            <div class="modal-body" id="search-result">
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="dropdown show" style="background-color: rgb(115,103,240);border-radius:8px;">
                 <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,3 +66,72 @@
         </div>
     </div>
 </nav>
+
+<form action="/cards/search" method="get" name="search-form" hidden>
+    <input type="text" name="player_name">
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchForm = document.forms['search-form'];
+        const playerName = document.getElementById('playerName')
+        const searchResult = document.getElementById('search-result');
+        console.log(searchResult);
+
+        playerName.onkeyup = function (e) {
+            console.log(e.target.value);
+            if (e.target.value === '') {
+                return;
+            }
+            let match = e.target.value.match(/^[a-zA-Z]*/);
+            let match2 = e.target.value.match(/\s*/)
+            if (match2[0] === e.target.value) {
+                searchResult.innerHTML = '<p>Wrong input</p>';
+            }
+            if (match[0] === e.target.value) {
+                let player_name = e.target.value.toUpperCase();
+                fetch('/cards/search', {
+                    'method': 'POST',
+                    'mode': 'cors',
+                    'headers': {
+                        'Content-Type': 'application/json',
+                    },
+                    'body': JSON.stringify({ player_name: player_name })
+                }).then(res => res.json())
+                    .then(players => {
+                        searchResult.innerHTML = '';
+                        if (players.length < 1) {
+                            searchResult.innerHTML = '<p class="text-white mt-3">No search results</p>';
+                            return;
+                        }
+                        players.forEach(player => {
+                            searchResult.innerHTML += `
+                                <a class="card-container " href="/cards/${player._id}">
+                                    <div class="card-wrapper card-sm">
+                                        <img src="${player.background}" alt="" class="card-image">
+                                        <img src="${player.player_img}" alt="" class="player-image">
+                                        <img src="${player.flag}" alt="" class="nation-image nation-sm-image">
+                                        <img src="${player.event}" class="event-image event-sm-image">
+                                        <span class="player-position text-uppercase">${player.position}</span>
+                                        <span class="player-rating ">${player.rating}</span>
+                                        <span class="player-name"
+                                            style="${player.name.length > 11 ? ' transform : scale(0.653266, 1)' : ' transform: scale(0.890411, 1)'}; ">${player.name}</span>
+                                    </div >
+                                    <div class="card-info col-sm-8">
+                                        <span class="full-name" style="font-size:24px;">${player.full_name}</span>
+
+                                        <div class="club-name">${player.career.club}</div>
+                                        <div class="club-name">${player.rating} | ${player.position}</div>
+
+                                    </div>
+                                </a > 
+                                `
+                        })
+                    })
+                return;
+            }
+            searchResult.innerHTML = ''
+
+        }
+    })
+</script>

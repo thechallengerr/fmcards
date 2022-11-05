@@ -23,6 +23,48 @@ body {
     color: #fff;
 }
 
+// Header CSS
+
+.header-search {
+    i{
+        cursor: pointer;
+    }
+    .modal {
+        .modal-dialog {
+            .modal-content{
+                background-color: #10163a;
+                .modal-header{
+
+                }
+                .search-input{
+                    input{
+                        width: 100%;
+                        background-color: #262c49;
+                        color: #ddd;
+                        border: none;
+                        border-radius: 6px;
+                        padding: 4px; 
+                    }  
+                }
+                #search-result{
+                    height: 300px;
+                    overflow-y: scroll;
+                    .card-container{
+                        color: #fff;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: row;
+                        background-color: #10163a;
+                        margin: 16px;
+                        border-bottom: 1px solid #7777771a;
+                    }
+                }
+            }
+        }
+    }
+}
 .home,
 .cards, .events {
     background-color: #10163a;
@@ -80,6 +122,12 @@ body {
     cursor: pointer;
 }
 .filter-area {
+    h3{
+        border-bottom: 1px solid #aaa;
+        width: 100%;
+        padding-bottom: 8px;
+    }
+    padding-right: 0;
     padding-left: 0;
     form {
         width: 100%;
@@ -110,6 +158,7 @@ body {
                 overflow-y: scroll;
                 width: 100%;
                 display: none;
+                
                 .input-group {
                     width: 100%;
                     .form-check {
@@ -143,7 +192,7 @@ body {
             align-items: center;
             padding-bottom: 24px;
             padding-top: 24px;
-            border-bottom: 1px solid #6a6a6a;
+            border-bottom: 1px solid #7777771a;
             &:hover {
                 text-decoration: none;
                 background-color: #262c49;
@@ -454,6 +503,10 @@ body {
     background: #8bcb4f!important;
 }
 
+
+.bg-darkpurple {
+    background-color: #10163a;
+}
 
 
 //load avg stats 

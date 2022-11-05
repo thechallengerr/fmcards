@@ -5,6 +5,7 @@ const CardController = require('../app/controllers/CardController');
 router.use(cors());
 
 
+router.post('/search', CardController.liveSearch);
 
 router.get('/:id', CardController.detail);
 

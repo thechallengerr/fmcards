@@ -38,6 +38,8 @@ class CardController {
             .catch(next);
     }
 
+
+
     // GET /cards/:id
     detail(req, res, next) {
         const id = req.params.id;
@@ -48,6 +50,19 @@ class CardController {
             })
         }).catch(next);
         // res.render('cards/card-detail')
+    }
+    // POST /cards/search
+    liveSearch(req, res, next) {
+        const player_name = req.body.player_name
+        Player.find({
+            name: { $regex: new RegExp('^' + player_name + '.*', 'i') },
+            full_name: { $regex: new RegExp('^' + player_name + '.*', 'i') }
+        }).sort({ rating: -1 })
+            .then(players => {
+
+                res.status(200).send(JSON.stringify(players))
+            })
+            .catch(next);
     }
 
 

@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const route = require('./routes');
 const db = require('./config/db');
-
+const favicon = require('serve-favicon');
 
 //connect to db
 db.connect();
@@ -38,10 +38,7 @@ app.engine('.hbs', handlebars.engine({
 
 }));
 
-const hbs = handlebars.create({
-    // Specify helpers which are only registered on this instance.
-
-});
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 route(app);
 
