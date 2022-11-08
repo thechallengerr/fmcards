@@ -53,13 +53,37 @@ class CardController {
     // [POST] /cards/search
     liveSearch(req, res, next) {
         const player_name = req.body.player_name
-        console.log('.*' + player_name + '.*')
-        Player.find({
+        //full_name: { $regex: new RegExp('.*' + player_name + '.*', 'i') },
 
-            name: { $regex: new RegExp('.*' + player_name + '.*', 'i') },
-        }).sort({ rating: -1 })
+        Player.aggregate([
+
+            {
+                $match: {
+                    "full_name": { $regex: new RegExp('.*' + player_name + '.*', 'i') }
+                }
+            },
+            {
+                $sort: {
+                    rating: -1
+                }
+            },
+            {
+                $project: {
+                    background: 1,
+                    name: 1,
+                    rating: 1,
+                    player_img: 1,
+                    position: 1,
+                    flag: 1,
+                    event: 1,
+                    full_name: 1,
+                    career: 1,
+                }
+            }
+
+        ])
             .then(players => {
-                // console.log(players)
+
                 res.status(200).send(JSON.stringify(players))
             })
             .catch(next);
@@ -69,7 +93,6 @@ class CardController {
 
     filter(req, res, next) {
         console.log(req.query);
-
 
         let skip = (req.query.page - 1) * CARD_PER_PAGE
         let currentPage = req.query.page || 1;
