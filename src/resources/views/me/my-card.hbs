@@ -1,0 +1,63 @@
+<div id="my-card">
+    <div class="card-list">
+        {{#each cards}}
+        {{>card-editable _id=_id background=background player_img=player_img flag=flag
+        club=club position=position rating=rating player_name=player_name}}
+        {{/each}}
+    </div>
+</div>
+<div class="modal fade" id="delete-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-darkpurple">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Warning !!!</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This card is going to be stored in recylced bin. Continue ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="delete-card-btn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form name="delete-card-form" method="post" style="display: none;"></form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuBtns = document.querySelectorAll('.action-btn')
+        const actions = document.querySelectorAll('.action');
+        const actionBtns = document.querySelectorAll('.action-item');
+        menuBtns.forEach((menuBtn, index) => {
+            menuBtn.onclick = () => {
+                actions[index].classList.toggle('show')
+            }
+        })
+        actionBtns.forEach((actionBtn, index) => {
+            actionBtn.onclick = function () {
+                actionBtn.parentElement.parentElement.classList.remove('show')
+            }
+        });
+
+        var deleteBtn = document.querySelector('#delete-card-btn');
+        var deleteForm = document.forms['delete-card-form'];
+        var cardId;
+        $('#delete-card-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            cardId = button.data('id')
+            console.log(cardId)
+
+        })
+
+        deleteBtn.onclick = function () {
+            deleteForm.action = "/card-generator/" + cardId + '?_method=DELETE';
+
+            deleteForm.submit();
+        }
+
+    })
+
+</script>

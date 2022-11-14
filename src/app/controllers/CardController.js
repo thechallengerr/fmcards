@@ -1,65 +1,55 @@
 const { query } = require('express');
+const jwt = require('jsonwebtoken');
 const { mongooseToMultipleObjects, mongooseToSignleObject } = require('../../util/mongoose.js');
-
-const Player = require('../models/Player');
-const Nation = require('../models/Nation');
-const League = require('../models/League');
-const Event = require('../models/Event');
-const CARD_PER_PAGE = 18;
+const Nation = require('../models/Nation')
+const League = require('../models/League')
+const Player = require('../models/Player')
+const User = require('../models/User');
+const Card = require('../models/Card.js');
 class CardController {
 
     // [GET] /
     index(req, res, next) {
-        let skip = (req.query.page - 1) * CARD_PER_PAGE
-        let currentPage = req.query.page || 1;
-        let positions = [
-            'LW', 'LF', 'ST', 'CF', 'RW', 'RF', 'LM', 'CAM', 'CM', 'CDM', 'RM', 'LWB', 'LB', 'CB', 'RB', 'RWB', 'GK'
-        ]
-        Promise.all([Player.find().limit(CARD_PER_PAGE).skip(skip).sort({ rating: -1 }),
-        Player.count(),
-        Nation.find(),
-        League.find(),
-        Event.find()])
-            .then(([players, totalPlayers, nations, leagues, events]) => {
+        res.render('card-generator/card')
+    }
 
-                res.render('cards/cards',
-                    {
-
-                        players: mongooseToMultipleObjects(players),
-                        currentPage: currentPage,
-                        totalPages: Math.ceil(totalPlayers / CARD_PER_PAGE),
-                        nations: mongooseToMultipleObjects(nations),
-                        leagues: mongooseToMultipleObjects(leagues),
-                        events: mongooseToMultipleObjects(events),
-                        positions: positions,
-                    })
+    //[GET] /:id/edit
+    edit(req, res, next) {
+        Card.findById(req.params.id)
+            .then(function (card) {
+                res.render('card-generator/card-edit', {
+                    card: mongooseToSignleObject(card)
+                })
             })
             .catch(next);
     }
 
-
-
-    // GET /cards/:id
-    detail(req, res, next) {
-        const id = req.params.id;
-        Player.findOne({ _id: id }).then((player) => {
-            console.log(player)
-            res.render('cards/card-detail', {
-                player: mongooseToSignleObject(player)
+    //[PUT] :id/update
+    update(req, res, next) {
+        Card.updateOne({ _id: req.params.id }, req.body)
+            .then(function (card) {
+                res.json(card)
             })
-        }).catch(next);
-        // res.render('cards/card-detail')
+            .catch(() => {
+                res.json({ error: "Update card falied" });
+            });
     }
-    // [POST] /cards/search
-    liveSearch(req, res, next) {
-        const player_name = req.body.player_name
-        //full_name: { $regex: new RegExp('.*' + player_name + '.*', 'i') },
 
-        Player.aggregate([
+    //[DELETE] :id/delete
+    delete(req, res, next) {
+        Card.findById(req.params.id).then(function (card) {
+            console.log(card);
+            card.delete();
+            res.redirect('back')
+        })
+    }
+
+    getNations(req, res, next) {
+        Nation.aggregate([
 
             {
                 $match: {
-                    "full_name": { $regex: new RegExp('.*' + player_name + '.*', 'i') }
+                    "nation": { $regex: new RegExp('.*' + req.body.nation + '.*', 'i') }
                 }
             },
             {
@@ -67,39 +57,71 @@ class CardController {
                     rating: -1
                 }
             },
-            {
-                $project: {
-                    background: 1,
-                    name: 1,
-                    rating: 1,
-                    player_img: 1,
-                    position: 1,
-                    flag: 1,
-                    event: 1,
-                    full_name: 1,
-                    career: 1,
-                }
-            }
+
 
         ])
-            .then(players => {
-
-                res.status(200).send(JSON.stringify(players))
-            })
-            .catch(next);
+            .then(nations => {
+                res.json(nations);
+            }).catch(next);
     }
 
-    //[POST] /cards/filter
-
-    filter(req, res, next) {
-        console.log(req.query);
-
-        let skip = (req.query.page - 1) * CARD_PER_PAGE
-        let currentPage = req.query.page || 1;
-        Player.find()
-        res.send('<h3>Completed</h3>');
+    async getBackgrounds(req, res, next) {
+        var backgrounds = await Player.findOne().distinct('background')
+        res.json(backgrounds);
     }
 
+    //[POST] card-generator/get-clubs
+    async getClubs(req, res, next) {
+        var club_name = req.body.club_name
+        var clubs = await League.aggregate(
+            [
+                { $unwind: "$clubs" },
+                {
+                    $group: {
+                        _id: 0,
+                        selectedGroups: {
+                            $addToSet: '$clubs'
+                        }
+                    }
+                },
+                {
+                    $project: { selectedGroups: 1, _id: 0 }
+                },
+                {
+                    $match: {
+                        "selectedGroups": {
+                            $elemMatch: { "club_name": { $regex: new RegExp('.*' + club_name + '.*', 'i') } }
+                        }
+                    }
+                }
+
+
+            ])
+        var result = [];
+        // const regex = .* + club_name + .* /i;
+        clubs[0].selectedGroups.forEach(club => {
+            if (club.club_name.toLowerCase().includes(club_name)) {
+                result.push(club);
+            }
+        })
+
+        res.json(result);
+    }
+
+    // GET /card-generator/save
+    async save(req, res, next) {
+        if (!req.cookies.accessToken) {
+            res.status(501).json({ error: 'Bạn cần đăng nhập để có thể lưu thẻ này' });
+            return;
+        }
+        var data = await jwt.verify(req.cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
+        req.body.createdBy = data.payload.id
+        console.log(req.body)
+        await Card.create(req.body)
+        res.json(req.body)
+
+
+    }
 
 
 

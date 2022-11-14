@@ -17,6 +17,9 @@ body {
   font-family: 'DINProCondBold';
   color: #fff; }
 
+.show {
+  display: block !important; }
+
 .header-search i {
   cursor: pointer; }
 
@@ -45,11 +48,48 @@ body {
       .header-search .modal .modal-dialog .modal-content #search-result .card-container:hover {
         background-color: #262c49; }
 
+#my-card {
+  margin-top: 64px;
+  background-color: #10163a;
+  min-height: 500px;
+  padding: 0 32px; }
+  #my-card .card-list .card-container {
+    position: relative;
+    text-decoration: none; }
+    #my-card .card-list .card-container .action-btn {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      #my-card .card-list .card-container .action-btn span {
+        color: #fff; }
+    #my-card .card-list .card-container .action {
+      display: none;
+      position: absolute;
+      top: 24px;
+      right: 16px;
+      background-color: #fff;
+      transition: all 0.5s ease-in; }
+      #my-card .card-list .card-container .action .action-list {
+        margin-bottom: 0;
+        list-style-type: none;
+        padding: 0; }
+        #my-card .card-list .card-container .action .action-list .action-item a {
+          width: 100%;
+          text-decoration: none;
+          padding: 6px 8px;
+          display: flex; }
+        #my-card .card-list .card-container .action .action-list .action-item:hover {
+          background-color: #ccc; }
+
 .home,
 .cards, .events {
   background-color: #10163a;
   border-radius: 16px;
-  margin-top: 48px; }
+  margin-top: 64px; }
 
 .section {
   margin-top: 16px;
@@ -166,6 +206,71 @@ body {
       font-weight: 300;
       border-top: 1px solid #aaa;
       width: 100%; }
+
+.card-generator {
+  padding: 0 64px;
+  justify-content: center; }
+  .card-generator .card-display {
+    margin-right: 48px; }
+    .card-generator .card-display .card-container {
+      border: 1px solid #e4e4e4;
+      border-radius: 6px; }
+      .card-generator .card-display .card-container .card-wrapper {
+        margin: 16px; }
+  .card-generator .create-form {
+    width: 50%;
+    margin-top: 24 px; }
+    .card-generator .create-form form {
+      margin-top: 16px; }
+      .card-generator .create-form form .form-group #player-img-search {
+        background-color: #10163a;
+        max-height: 300px;
+        overflow-y: scroll; }
+        .card-generator .create-form form .form-group #player-img-search .image-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer; }
+          .card-generator .create-form form .form-group #player-img-search .image-wrapper:hover {
+            background-color: #262c49; }
+      .card-generator .create-form form .form-group #nation-search {
+        background-color: #10163a;
+        max-height: 200px;
+        overflow-y: scroll; }
+        .card-generator .create-form form .form-group #nation-search .flag-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          flex: 1 1;
+          cursor: pointer; }
+          .card-generator .create-form form .form-group #nation-search .flag-wrapper:hover {
+            background-color: #262c49; }
+      .card-generator .create-form form .form-group #club-search {
+        background-color: #10163a;
+        max-height: 200px;
+        overflow-y: scroll; }
+        .card-generator .create-form form .form-group #club-search .club-wrapper {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          flex: 1 1;
+          cursor: pointer; }
+          .card-generator .create-form form .form-group #club-search .club-wrapper:hover {
+            background-color: #262c49; }
+      .card-generator .create-form form .input-group {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 0 64px; }
+        .card-generator .create-form form .input-group input {
+          max-width: 120px; }
+
+.bg-light-purple {
+  background-color: #7367f0 !important; }
 
 .card-container .card-sm {
   width: 128px;

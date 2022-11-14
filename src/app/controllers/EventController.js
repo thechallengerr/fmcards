@@ -24,6 +24,17 @@ class EventController {
             }).catch(next);
         })
     }
+
+
+    //[GET] /events/all
+    async getEvents(req, res, next) {
+        try {
+            var events = await Event.find()
+            res.json(events)
+        } catch (err) {
+            res.status(500).send(err)
+        }
+    }
     //[GET] /events
     index(req, res, next) {
         Event.find().sort({ event_name: 1 })

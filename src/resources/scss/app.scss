@@ -23,6 +23,10 @@ body {
     color: #fff;
 }
 
+
+.show {
+    display: block!important;
+}
 // Header CSS
 
 .header-search {
@@ -33,9 +37,7 @@ body {
         .modal-dialog {
             .modal-content{
                 background-color: #10163a;
-                .modal-header{
-
-                }
+                
                 .search-input{
                     input{
                         width: 100%;
@@ -68,11 +70,67 @@ body {
         }
     }
 }
+
+
+//My Card Page CSS
+
+#my-card {
+    margin-top: 64px;
+    background-color: #10163a;
+    min-height: 500px;
+    padding: 0 32px;
+    .card-list {
+        .card-container {
+            position: relative;
+            text-decoration: none;
+            .action-btn {
+                position: absolute;
+                top: 4px;
+                right: 0;
+                width: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                span {
+                    color: #fff;
+                }
+            }
+            .action {
+                display: none;
+                position: absolute;
+                top: 24px;
+                right: 16px;
+                background-color: #fff;
+                transition: all 0.5s ease-in;
+                .action-list{
+                    margin-bottom: 0;
+                    list-style-type: none;
+                    padding: 0;
+                    .action-item {
+                        a{  
+                            width: 100%;
+                            text-decoration: none;
+                            padding: 6px 8px;
+                            display: flex;
+                        }
+                        &:hover{
+                            background-color: #ccc;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+// End My Card Page CSS
+
+
 .home,
 .cards, .events {
     background-color: #10163a;
     border-radius: 16px;
-    margin-top: 48px;
+    margin-top: 64px;
 }
 
  .section {
@@ -119,6 +177,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 12px;
+    
 }
 
 .card-list .card-container:hover {
@@ -238,6 +297,98 @@ body {
     }
 }
 
+// Card Generator Page CSS
+.card-generator{
+    padding: 0 64px;
+    justify-content: center;
+    .card-display{
+        margin-right: 48px;
+        .card-container {
+            border: 1px solid #e4e4e4;
+            border-radius: 6px;
+            .card-wrapper {
+                margin: 16px;
+            }
+        }
+    }
+    .create-form{
+        width: 50%;
+        margin-top: 24 px;
+        form{
+            margin-top: 16px;
+            .form-group {
+                #player-img-search {
+                    background-color: #10163a;
+                    max-height: 300px;
+                    overflow-y: scroll;
+                    // padding: 32px;
+                    // display: none;
+                    .image-wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #262c49;
+                        }
+                    }
+
+                }
+                #nation-search {
+                    background-color: #10163a;
+                    max-height: 200px;
+                    overflow-y: scroll;
+                    .flag-wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        flex: 1 1   ;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #262c49;
+                        }
+                    }
+                    
+                }
+                #club-search {
+                    background-color: #10163a;
+                    max-height: 200px;
+                    overflow-y: scroll;
+                    .club-wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        flex: 1 1   ;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #262c49;
+                        }
+                    }
+                }
+            }
+            .input-group {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+                padding: 0 64px;
+                input {
+                    max-width: 120px;
+                }
+            }
+        }
+    }
+}
+//End  Card Generator CSS
+
+
+
+.bg-light-purple {
+    background-color: #7367f0!important;
+}
 .card-container .card-sm {
     width: 128px;
     height: 128px;

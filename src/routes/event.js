@@ -5,7 +5,7 @@ const EventController = require('../app/controllers/EventController');
 router.use(cors());
 
 
-
+router.get('/all', EventController.getEvents)
 
 router.get('/:event_slug', EventController.eventPlayers);
 

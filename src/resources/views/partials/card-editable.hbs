@@ -1,0 +1,29 @@
+<div class="card-container">
+    <div class="card-wrapper ">
+        <img src="{{background}}" alt="" class="card-image">
+        <img src="{{player_img}}" alt="" class="player-image">
+        <img src="{{flag}}" alt="" class="nation-image nation-sm-image">
+        <img src="{{club}}" class="event-image event-sm-image">
+        <span class="player-position text-uppercase">{{position}}</span>
+        <span class="player-rating ">{{rating}}</span>
+        <span class="player-name"
+            style="{{#if (isTooLong player_name)}} transform: scale(0.653266, 1); {{else}}transform: scale(0.890411, 1);{{/if}}">{{player_name}}</span>
+    </div>
+    <div class="action-btn">
+        <span><i class="fa-solid fa-ellipsis-vertical"></i></span>
+    </div>
+    <div class="action">
+        <ul class="action-list">
+            <li class="action-item"><a class="text-dark " href="/card-generator/{{_id}}/edit">Edit</a></li>
+            <li class="action-item " data-toggle="modal" data-id="{{_id}}" data-target="#delete-card-modal"><a href="#"
+                    class="text-dark">Delete</a></li>
+            <li class="action-item"><a class="text-dark " href="#">Download</a></li>
+        </ul>
+    </div>
+</div>
+
+{{!-- Hidden delete card form --}}
+
+<script>
+
+</script>

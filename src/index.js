@@ -10,10 +10,13 @@ const port = process.env.PORT || 3000;
 const route = require('./routes');
 const db = require('./config/db');
 const favicon = require('serve-favicon');
-
+const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser')
+const methodOverride = require('method-override')
 //connect to db
 db.connect();
 
+dotenv.config();
 //HTTP Logger
 app.use(morgan('combined'));
 
@@ -22,6 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //urlencoded + json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// cookie parser
+app.use(cookieParser());
 
 // Template Engine
 app.engine('.hbs', handlebars.engine({
@@ -38,6 +44,10 @@ app.engine('.hbs', handlebars.engine({
 
 }));
 
+// Method Overrides
+app.use(methodOverride('_method'))
+
+// set favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 route(app);

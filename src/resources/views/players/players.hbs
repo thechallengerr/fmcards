@@ -106,12 +106,12 @@
                             <a class="page-link text-white bg-darkpurle" href="/cards?page={{sum currentPage -1}}"
                                 tabindex="-1">Prev</a>
                         </li>
-                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=1">1</a>
+                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/players?page=1">1</a>
                         </li>
                         {{#if (lte currentPage 3)}}
-                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=2">2</a>
+                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/players?page=2">2</a>
                         </li>
-                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=3">3</a>
+                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/players?page=3">3</a>
                         </li>
                         {{/if}}
                         {{#if (gt totalPages 3)}}
@@ -121,41 +121,43 @@
                         {{/if}}
                         {{#if (and (gt currentPage 3) (lt currentPage (sum totalPages -3)))}}
                         <li class="page-item"><a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{sum currentPage -1}}">{{sum
+                                href="/players?page={{sum currentPage -1}}">{{sum
                                 currentPage -1}}</a></li>
                         <li class="page-item">
-                            <a href="/cards?page={{currentPage}}"
+                            <a href="/players?page={{currentPage}}"
                                 class="page-link text-white bg-darkpurle">{{currentPage}}</a>
                         </li>
                         <li class="page-item"><a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{sum currentPage 1}}">{{sum
+                                href="/players?page={{sum currentPage 1}}">{{sum
                                 currentPage 1}}</a></li>
                         <li class="page-item">
                             <a href="#" class="page-link text-white bg-darkpurle">...</a>
                         </li>
                         {{else}}
                         <li class="page-item">
-                            <a href="/cards?page={{sum totalPages -2}}" class="page-link text-white bg-darkpurle">{{sum
+                            <a href="/players?page={{sum totalPages -2}}"
+                                class="page-link text-white bg-darkpurle">{{sum
                                 totalPages -2}}</a>
                         </li>
                         <li class="page-item">
-                            <a href="/cards?page={{sum totalPages -1}}" class="page-link text-white bg-darkpurle">{{sum
+                            <a href="/players?page={{sum totalPages -1}}"
+                                class="page-link text-white bg-darkpurle">{{sum
                                 totalPages -1}}</a>
                         </li>
                         {{/if}}
                         <li class="page-item">
                             <a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{totalPages}}">{{totalPages}}</a>
+                                href="/players?page={{totalPages}}">{{totalPages}}</a>
                         </li>
                         <li class="page-item {{#if (gte currentPage totalPages)}} disabled {{else}} {{/if}}">
                             <a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{sum currentPage 1}}">Next</a>
+                                href="/players?page={{sum currentPage 1}}">Next</a>
                         </li>
                     </ul>
                 </nav>
                 <div class="card-stat-list ">
                     {{#each players}}
-                    <a class="card-container row" href="/cards/{{this._id}}">
+                    <a class="card-container row" href="/players/{{this._id}}">
                         <div class="card-wrapper">
                             <img src="{{this.background}}" alt="" class="card-image">
                             <img src="{{this.player_img}}" alt="" class="player-image">
@@ -250,15 +252,15 @@
                 <nav class="mt-4">
                     <ul class="pagination justify-content-end">
                         <li class="page-item {{#if (lte currentPage 1)}} disabled {{else}} {{/if}}">
-                            <a class="page-link text-white bg-darkpurle" href="/cards?page={{sum currentPage -1}}"
+                            <a class="page-link text-white bg-darkpurle" href="/players?page={{sum currentPage -1}}"
                                 tabindex="-1">Prev</a>
                         </li>
-                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=1">1</a>
+                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/players?page=1">1</a>
                         </li>
                         {{#if (lte currentPage 3)}}
-                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=2">2</a>
+                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/players?page=2">2</a>
                         </li>
-                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/cards?page=3">3</a>
+                        <li class="page-item"><a class="page-link text-white bg-darkpurle" href="/players?page=3">3</a>
                         </li>
                         {{/if}}
                         {{#if (gt totalPages 3)}}
@@ -268,35 +270,37 @@
                         {{/if}}
                         {{#if (and (gt currentPage 3) (lte currentPage (sum totalPages -2)))}}
                         <li class="page-item"><a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{sum currentPage -1}}">{{sum
+                                href="/players?page={{sum currentPage -1}}">{{sum
                                 currentPage -1}}</a></li>
                         <li class="page-item">
-                            <a href="/cards?page={{currentPage}}"
+                            <a href="/players?page={{currentPage}}"
                                 class="page-link text-white bg-darkpurle">{{currentPage}}</a>
                         </li>
                         <li class="page-item"><a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{sum currentPage 1}}">{{sum
+                                href="/players?page={{sum currentPage 1}}">{{sum
                                 currentPage 1}}</a></li>
                         <li class="page-item">
                             <a href="#" class="page-link text-white bg-darkpurle">...</a>
                         </li>
                         {{else}}
                         <li class="page-item">
-                            <a href="/cards?page={{sum totalPages -2}}" class="page-link text-white bg-darkpurle">{{sum
+                            <a href="/players?page={{sum totalPages -2}}"
+                                class="page-link text-white bg-darkpurle">{{sum
                                 totalPages -2}}</a>
                         </li>
                         <li class="page-item">
-                            <a href="/cards?page={{sum totalPages -1}}" class="page-link text-white bg-darkpurle">{{sum
+                            <a href="/players?page={{sum totalPages -1}}"
+                                class="page-link text-white bg-darkpurle">{{sum
                                 totalPages -1}}</a>
                         </li>
                         {{/if}}
                         <li class="page-item">
                             <a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{totalPages}}">{{totalPages}}</a>
+                                href="/players?page={{totalPages}}">{{totalPages}}</a>
                         </li>
                         <li class="page-item {{#if (gte currentPage totalPages)}} disabled {{else}} {{/if}}">
                             <a class="page-link text-white bg-darkpurle"
-                                href="/cards?page={{sum currentPage 1}}">Next</a>
+                                href="/players?page={{sum currentPage 1}}">Next</a>
                         </li>
                     </ul>
                 </nav>

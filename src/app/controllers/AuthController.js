@@ -1,6 +1,9 @@
 const { mongooseToMultipleObjects } = require('../../util/mongoose.js');
-const bcrypt = require('bcryptjs');
-const saltRounds = 10;
+const { generateToken, updateRefreshToken } = require('../../util/jwt.js');
+const randToken = require('rand-token')
+const jwt = require('jsonwebtoken')
+var passwordHash = require('password-hash');
+
 const User = require('../models/User');
 
 class AuthController {
@@ -21,55 +24,80 @@ class AuthController {
         console.log(formData);
         User.findOne({ username: formData.username }, (err, user) => {
             if (err) throw err;
-            if (user === null) {
-                if (err) throw err;
-                User.create({ username: formData.username, password: formData.password }, function (err) {
+            if (user) {
+
+                res.status(401).send('Username already in use');
+            } else {
+                User.create({ username: formData.username, password: formData.password, email: formData.email, email: formData.email, userAvatar: '' }, function (err) {
                     if (err) return handleError(err);
 
                 });
                 res.redirect('/');
-            } else {
-                res.send('Username already in use');
             }
         })
-
-
-
     }
 
     //[POST] auth/signin
-    signin(req, res, next) {
-        const formData = req.body;
-        console.log(formData);
+    async signin(req, res, next) {
 
-        User.findOne({ username: formData.username }, function (err, user) {
-            if (err) throw err;
-            console.log(user);
-            if (!user) {
-                res.send('Username not found');
-                return;
-            }
-            // bcrypt.genSalt(10, function (err, salt) {
+        console.log(req.body);
 
-            //     bcrypt.hash(formData.password, salt, function (err, hash) {
-            //         console.log(hash);
-            //         console.log(user.password);
+        const user = await User.findOne({ username: req.body.username })
+        if (!user) {
+            res.status(401).json({ error: 'Username not found. Please check again' });
+            return;
+        }
+        const isPasswordValid = passwordHash.verify(req.body.password, user.password);
 
-            //     });
-            // });
-            bcrypt.compare(formData.password, user.password, (err, isMatch) => {
-                console.log(isMatch);
-                if (!isMatch) {
-                    res.send('Password incorrect');
-                    return;
-                } else {
-                    res.redirect('/');
-                }
-            });
+        if (!isPasswordValid) {
+            return res.status(401).send({ error: 'Invalid password' });
+        }
+
+        const accessTokenLife = process.env.ACCESS_TOKEN_LIFE;
+        const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+
+        const dataForAccessToken = {
+            id: user._id,
+        };
+        const accessToken = await generateToken(
+            dataForAccessToken,
+            accessTokenSecret,
+            accessTokenLife,
+        );
+        console.log(accessToken);
+        if (!accessToken) {
+            return res
+                .status(401)
+                .send('Đăng nhập không thành công, vui lòng thử lại.');
+        }
+
+        let refreshToken = await generateToken(dataForAccessToken, accessTokenSecret, '7d'); // tạo 1 refresh token ngẫu nhiên
+        if (!user.refreshToken) {
+            console.log(' No refresh token')
+            // Nếu user này chưa có refresh token thì lưu refresh token đó vào database
+            user.updateOne(
+
+                { $set: { refreshToken: refreshToken } },
+                { new: true },
+            )
+                .then(doc => console.log(doc))
+                .catch(err => console.log(err));
+        } else {
+            // Nếu user này đã có refresh token thì lấy refresh token đó từ database
+            refreshToken = user.refreshToken;
+        }
+
+        return res.json({
+            msg: 'Đăng nhập thành công.',
+            accessToken,
+            refreshToken,
+            user,
         });
-
     }
 
+    async refreshToken(req, res, next) {
+
+    }
 }
 
 

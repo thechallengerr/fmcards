@@ -1,0 +1,360 @@
+<style type="scss">
+
+</style>
+
+<div class="card-generator d-flex flex-row">
+    <div class="card-display mt-5">
+        <div class="card-container ">
+            <div class="card-wrapper card-lg">
+                <img src="https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_TOTS_ULT_S_A5.png?v=848rffjv3we"
+                    alt="" class="card-image">
+                <img src="https://eaassets-a.akamaihd.net/fifa/u/f/fm22/prod/s/static/players/players_22/p20801_TOTS.png?v=848rffjv3we"
+                    alt="" class="player-image">
+                <img src="https://cdn-p2.frzdb.net/fifamobile/images/nationFlags_22/38.png?v=848rffjv3we" alt=""
+                    class="nation-image nation-lg-image">
+                <img src="https://cdn-p2.frzdb.net/fifamobile/images/clubLogos_22/11.png?v=848rffjv3we"
+                    class="event-image event-lg-image">
+                <span class="player-position player-position-lg text-uppercase">ST</span>
+                <span class="player-rating player-rating-lg ">100</span>
+                <span class="player-name player-name-lg" style=" transform: scale(0.8, 1); ">Bẩy Chuồn</span>
+            </div>
+        </div>
+    </div>
+    <div class="create-form">
+        <form action="card-generator/save" method="POST" id="cardForm" onsubmit="return false;">
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="player-name" name="player_name"
+                    placeholder="Enter player name" value="Bảy Chuồn">
+            </div>
+            <div class="form-group">
+                <label for="position">position</label>
+                <input type="text" class="form-control" id="position" value="ST" name="position"
+                    placeholder="Enter position">
+            </div>
+            <div class="form-group">
+                <label for="rating">rating</label>
+                <input type="number" class="form-control" id="rating" value="100" name="rating"
+                    placeholder="Enter rating">
+            </div>
+            <div class="form-group">
+                <label for="player_img">player image</label>
+                <input type="text" class="form-control" id="player-img" name="player_img"
+                    value="https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_TOTS_ULT_S_A5.png?v=848rffjv3we">
+                <div id="player-img-search">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nation">nation</label>
+                <input type="text" class="form-control" id="nation" name="nation" value="Argentina">
+                <div id="nation-search">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="background">Background</label>
+                <select class="form-control" id="background">
+                    <option value="None"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="club_event">club</label>
+                <input type="text" class="form-control" id="club" name="club">
+                <div id="club-search">
+
+                </div>
+            </div>
+            <div class="input-group mt-5">
+                <div class="btn bg-light-purple text-white" id="btn-save">Save to My Cards</div>
+                <input class="btn bg-light-purple text-white" value="Download" id="btn-Download">
+            </div>
+
+        </form>
+    </div>
+</div>
+<script>
+    const form = document.querySelector('#cardForm');
+    const submitBtn = document.querySelector('#btn-save');
+
+
+    // Player name
+    const playerName = document.querySelector('.player-name');
+    const playerNameInput = document.querySelector('#player-name');
+
+    //Postion
+    const position = document.querySelector('.player-position');
+    const positionInput = document.querySelector('#position');
+
+    //Rating(OVR)
+    const rating = document.querySelector('.player-rating');
+    const ratingInput = document.querySelector('#rating');
+
+    //Nation Image
+    const nation = document.querySelector('.nation-image');
+    const nationInput = document.querySelector('#nation');
+    const nationSearch = document.querySelector('#nation-search');
+
+    // Player image
+    const playerImg = document.querySelector('.player-image');
+    const playerImgInput = document.querySelector('#player-img');
+    const playerImgSearch = document.querySelector('#player-img-search');
+
+    // Card background
+    const background = document.querySelector('.card-image');
+    const backgroundInput = document.querySelector('#background');
+    const backgroundSelect = document.querySelector('#background');
+
+    // Club/ Event Image
+    const club = document.querySelector('.event-image');
+    const clubInput = document.querySelector('#club');
+    const clubSearch = document.querySelector('#club-search');
+
+
+    playerNameInput.onkeyup = function (e) {
+        console.log(e.target.value)
+        playerName.textContent = e.target.value;
+    }
+    positionInput.onkeyup = function (e) {
+        console.log(e.target.value)
+        position.textContent = e.target.value;
+    }
+    ratingInput.onkeyup = function (e) {
+        console.log(e.target.value)
+        rating.textContent = e.target.value;
+    }
+
+    //seach for player image
+    playerImgInput.onchange = function (e) {
+        console.log(e.target.value);
+        if (e.target.value === '') {
+            return;
+        }
+        let match = e.target.value.match(/^[a-zA-Z]*/);
+        let match2 = e.target.value.match(/\s*/)
+        if (match2[0] === e.target.value) {
+            playerImgSearch.innerHTML = '<p>Wrong input</p>';
+        }
+        if (match[0] === e.target.value) {
+            let player_name = e.target.value
+            fetch('/players/search', {
+                'method': 'POST',
+                'mode': 'cors',
+                'headers': {
+                    'Content-Type': 'application/json',
+                },
+                'body': JSON.stringify({ player_name: player_name })
+            }).then(res => res.json())
+                .then(players => {
+                    playerImgSearch.innerHTML = '';
+                    if (players.length < 1) {
+                        playerImgSearch.innerHTML = '<p class="text-white mt-3">No search results for this player name</p>';
+                        return;
+                    }
+                    players.forEach(player => {
+
+                        playerImgSearch.innerHTML += `
+                                    <div class="image-wrapper mt-3">
+                                        
+                                        <img src="${player.player_img}" alt="" class="player-image" height=120>
+                                        
+                                        <span class="player-name"
+                                            style="${player.name.length > 11 ? ' transform : scale(0.653266, 1)' : ' transform: scale(0.890411, 1)'}; ">${player.name}</span>
+                                    </div >
+                                `
+                    })
+                }).then(() => {
+                    const imgs = document.querySelectorAll('.image-wrapper')
+                    console.log(imgs)
+                    imgs.forEach(img => {
+                        img.onclick = () => {
+                            console.log('Player clicked')
+                            playerImg.setAttribute('src', img.children[0].getAttribute('src'))
+
+                            playerImgInput.value = img.children[1].textContent
+                            playerImgSearch.innerHTML = ''
+                        }
+                    })
+                })
+
+            return;
+        }
+        playerImgSearch.innerHTML = ''
+    }
+
+
+    // search for nation
+    nationInput.onchange = function (e) {
+        console.log(e.target.value);
+        if (e.target.value === '') {
+            return;
+        }
+        let match = e.target.value.match(/^[a-zA-Z]*/);
+        let match2 = e.target.value.match(/\s*/)
+        if (match2[0] === e.target.value) {
+            nationSearch.innerHTML = '<p>Wrong input</p>';
+        }
+        if (match[0] === e.target.value) {
+            let nationName = e.target.value
+            fetch('/card-generator/get-nations', {
+                'method': 'POST',
+                'mode': 'cors',
+                'headers': {
+                    'Content-Type': 'application/json',
+                },
+                'body': JSON.stringify({ nation: nationName })
+
+            }).then(res => res.json())
+                .then(nations => {
+                    console.log(nations)
+                    nationSearch.innerHTML = '';
+                    if (nations.length < 1) {
+                        nationSearch.innerHTML = '<p class="text-white mt-3">No search results for this player name</p>';
+                        return;
+                    }
+                    nations.forEach(nationItem => {
+
+                        nationSearch.innerHTML += `
+                                    <div class="flag-wrapper row mt-3">
+                                        
+                                        <img src="${nationItem.flag}" alt="" class="flag ml-3 mr-3 " height=28>
+                                        
+                                        <span class="ml-3 nation col-sm-6">${nationItem.nation}</span>
+                                    </div >
+                                    
+                                
+                                `
+                    })
+                }).then(() => {
+                    const flags = document.querySelectorAll('.flag-wrapper')
+
+                    flags.forEach(flag => {
+                        flag.onclick = () => {
+                            nation.setAttribute('src', flag.children[0].getAttribute('src'))
+                            //playerflag.setAttribute('src',)
+                            nationInput.value = flag.children[1].textContent
+                            nationSearch.innerHTML = ''
+                        }
+                    })
+                })
+
+            return;
+        }
+        playerImgSearch.innerHTML = ''
+    }
+
+
+    //search for club 
+    clubInput.onchange = function (e) {
+        console.log(e.target.value);
+        if (e.target.value === '') {
+            return;
+        }
+        let match = e.target.value.match(/^[a-zA-Z]*/);
+        let match2 = e.target.value.match(/\s*/)
+        if (match2[0] === e.target.value) {
+            nationSearch.innerHTML = '<p>Wrong input</p>';
+        }
+        if (match[0] === e.target.value) {
+            let clubName = e.target.value
+            fetch('/card-generator/get-clubs', {
+                'method': 'POST',
+                'mode': 'cors',
+                'headers': {
+                    'Content-Type': 'application/json',
+                },
+                'body': JSON.stringify({ club_name: clubName })
+
+            }).then(res => res.json())
+                .then(clubs => {
+                    console.log(clubs)
+                    clubSearch.innerHTML = '';
+                    if (clubs.length < 1) {
+                        clubSearch.innerHTML = '<p class="text-white mt-3">No search results for this player name</p>';
+                        return;
+                    }
+                    clubs.forEach(clubItem => {
+
+                        clubSearch.innerHTML += `
+                                    <div class="club-wrapper row mt-3">
+                                        
+                                        <img src="${clubItem.club_img}" alt="" class="club ml-3 mr-3 " height=28>
+                                        
+                                        <span class="ml-3 club col-sm-6">${clubItem.club_name}</span>
+                                    </div >
+                                    
+                                
+                                `
+                    })
+                }).then(() => {
+                    const clubs = document.querySelectorAll('.club-wrapper')
+
+                    clubs.forEach(clubItem => {
+                        clubItem.onclick = () => {
+                            club.setAttribute('src', clubItem.children[0].getAttribute('src'))
+                            //playerclub.setAttribute('src',)
+                            clubInput.value = clubItem.children[1].textContent
+                            clubSearch.innerHTML = ''
+                        }
+                    })
+                })
+
+            return;
+        }
+        playerImgSearch.innerHTML = ''
+    }
+
+    // fetch background
+    fetch('/card-generator/get-backgrounds', {
+        'method': 'GET',
+        'mode': 'cors',
+        'headers': {
+            'Content-Type': 'application/json',
+        },
+    }).then(res => res.json())
+        .then(backgroundList => {
+            var start = "https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_".length
+            backgroundList.forEach(backgroundItem => {
+                var end = backgroundItem.indexOf('.png')
+                backgroundSelect.innerHTML += `<option value="${backgroundItem}"> ${backgroundItem.slice(start, end)}</option>`
+            })
+        })
+        .then(() => {
+            backgroundInput.onchange = () => {
+                background.setAttribute('src', backgroundInput.value)
+            }
+        })
+
+    // submit form 
+    submitBtn.onclick = () => {
+        console.log('click')
+        const formData = {
+            player_img: playerImg.getAttribute('src'),
+            player_name: playerName.textContent,
+            rating: rating.textContent,
+            position: position.textContent,
+            flag: nation.getAttribute('src'),
+            background: background.getAttribute('src'),
+            club: club.getAttribute('src'),
+        }
+        fetch('/card-generator/save', {
+            'method': "POST",
+            'mode': 'cors',
+            'headers': {
+                'Content-Type': 'application/json',
+            },
+            'body': JSON.stringify(formData)
+
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.error) {
+                    window.alert(data.error)
+                } else {
+                    window.location.href = '/me/my-cards'
+                }
+            })
+    }
+
+</script>

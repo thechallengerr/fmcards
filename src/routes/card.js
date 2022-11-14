@@ -4,13 +4,15 @@ const cors = require('cors');
 const CardController = require('../app/controllers/CardController');
 router.use(cors());
 
-router.get('/filter', CardController.filter);
-
-router.post('/search', CardController.liveSearch);
-
-router.get('/:id', CardController.detail);
-
+router.delete('/:id', CardController.delete)
+router.put('/:id/update', CardController.update)
+router.get('/:id/edit', CardController.edit)
+router.post('/get-clubs', CardController.getClubs)
+router.get('/get-backgrounds', CardController.getBackgrounds)
+router.post('/get-nations', CardController.getNations)
+router.post('/save', CardController.save);
 router.get('/', CardController.index);
+
 
 
 module.exports = router;

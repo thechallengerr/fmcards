@@ -1,26 +1,67 @@
 <h1 class="mb-4">Sign In</h1>
-<form method="POST" action="/auth/signin">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Enter username">
-        <div class="error mt-3">
-            <p class="errorMsg"></p>
-        </div>
-
+<form method="POST">
+    <div class="error">
+        <p class="errorMsg text-danger"></p>
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
-        <div class="error mt-3">
-            <p class="errorMsg"></p>
-        </div>
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" id="login-btn" class="btn btn-primary">Submit</button>
     <p class="mt-3"> Not a member yet ? <a href="/auth/signup">Register here</a></p>
 </form>
 
 <script>
+    var formData = {}
+    var username = document.querySelector('#username');
+    var password = document.querySelector('#password');
+    var error = document.querySelector('.errorMsg');
+    var loginBtn = document.querySelector('#login-btn');
+    console.log(error)
+    username.keyup = function () {
+        error.textContent = ''
+    }
+    password.keyup = function () {
+        error.textContent = ''
+    }
+    loginBtn.onclick = function (e) {
+        e.preventDefault();
+        fetch('/auth/signin', {
+            'method': 'POST',
+            'mode': 'cors',
+            'headers': {
+                'Content-Type': 'application/json',
+            },
+            'body': JSON.stringify({ username: username.value, password: password.value })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    console.log(data.error)
+                    error.textContent = data.error
+                    return
+                }
+                console.log(data)
+                setCookie('accessToken', data.accessToken, 0.1);
+
+
+            }).then(() => {
+                window.location.href = '/'
+            })
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
 
 </script>

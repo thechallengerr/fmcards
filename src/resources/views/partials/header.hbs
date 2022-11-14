@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #10163a;">
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #10163a;">
     <div class="container">
         <a class="navbar-brand" href="/">FMCARDS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -12,10 +12,13 @@
                     <a class="nav-link" href="/">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cards?page=1">Cards</a>
+                    <a class="nav-link" href="/players?page=1">Players</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/events">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/card-generator">Card Generator</a>
                 </li>
             </ul>
             <div class="header-search mr-4">
@@ -57,8 +60,10 @@
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <a class="dropdown-item" href="/auth">Sign in</a>
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="/me/profile">Profile</a>
+                    <a class="dropdown-item" href="/me/my-cards">My Cards</a>
+
+                    <a class="dropdown-item" href="/auth">Logout</a>
 
                 </div>
             </div>
@@ -66,7 +71,7 @@
     </div>
 </nav>
 
-<form action="/cards/search" method="get" name="search-form" hidden>
+<form action="/players/search" method="get" name="search-form" hidden>
     <input type="text" name="player_name">
 </form>
 
@@ -89,7 +94,7 @@
             }
             if (match[0] === e.target.value) {
                 let player_name = e.target.value
-                fetch('/cards/search', {
+                fetch('/players/search', {
                     'method': 'POST',
                     'mode': 'cors',
                     'headers': {
@@ -106,7 +111,7 @@
                         players.forEach(player => {
 
                             searchResult.innerHTML += `
-                                <a class="card-container " href="/cards/${player._id}">
+                                <a class="card-container " href="/players/${player._id}">
                                     <div class="card-wrapper card-sm">
                                         <img src="${player.background}" alt="" class="card-image">
                                         <img src="${player.player_img}" alt="" class="player-image">
