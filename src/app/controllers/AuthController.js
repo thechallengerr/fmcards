@@ -54,7 +54,7 @@ class AuthController {
         }
 
         const accessTokenLife = `${process.env.ACCESS_TOKEN_LIFE}`;
-        const accessTokenSecret = `${process.env.ACCESS_TOKEN_SECRET}`;
+        const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
 
         const dataForAccessToken = {
             id: user._id,
