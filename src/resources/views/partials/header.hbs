@@ -55,7 +55,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHBCdp3pC3pfCn0T-_5vmOEJtaX_YVCGCFdw&usqp=CAU"
                         alt="" style="width:28px;height:28px;border-radius:50%;" class="mr-1">
-                    Username
+                    <span id="userName">Username</span>
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -80,7 +80,17 @@
         const searchForm = document.forms['search-form'];
         const playerName = document.getElementById('playerName')
         const searchResult = document.getElementById('search-result');
-        console.log(searchResult);
+
+        fetch('/auth/current-user', {
+            'method': 'POST',
+            'mode': 'cors',
+            'headers': {
+                'Content-Type': 'application/json',
+            },
+        }).then(res => res.json())
+            .then(user => {
+                document.getElementById('userName').textContent = user.username;
+            })
 
         playerName.onchange = function (e) {
             console.log(e.target.value);

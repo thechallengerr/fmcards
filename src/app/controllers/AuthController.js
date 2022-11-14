@@ -1,7 +1,7 @@
 const { mongooseToMultipleObjects } = require('../../util/mongoose.js');
 const { generateToken, updateRefreshToken } = require('../../util/jwt.js');
-const randToken = require('rand-token')
-const jwt = require('jsonwebtoken')
+const randToken = require('rand-token');
+const jwt = require('jsonwebtoken');
 var passwordHash = require('password-hash');
 
 const User = require('../models/User');
@@ -97,6 +97,16 @@ class AuthController {
 
     async refreshToken(req, res, next) {
 
+    }
+
+    async getCurrentUser(req, res, next) {
+        if (!req.cookies.accessToken) {
+            res.status(501).json({ error: 'Bạn cần đăng nhập để có thể lưu thẻ này' });
+            return;
+        }
+        var data = await jwt.verify(req.cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
+        var currentUser = await User.findById(data.payload.id);
+        res.json(currentUser);
     }
 }
 

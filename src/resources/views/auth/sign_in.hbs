@@ -24,7 +24,7 @@
     var password = document.querySelector('#password');
     var error = document.querySelector('.errorMsg');
     var loginBtn = document.querySelector('#login-btn');
-    console.log(error)
+
     username.keyup = function () {
         error.textContent = ''
     }
@@ -33,6 +33,7 @@
     }
     loginBtn.onclick = function (e) {
         e.preventDefault();
+        console.log(username.value)
         fetch('/auth/signin', {
             'method': 'POST',
             'mode': 'cors',
@@ -50,8 +51,6 @@
                 console.log(data)
                 setCookie('accessToken', data.accessToken, 0.1);
 
-
-            }).then(() => {
                 window.location.href = '/'
             })
     }
