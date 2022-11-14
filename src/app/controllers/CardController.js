@@ -40,13 +40,12 @@ class CardController {
         Card.findById(req.params.id).then(function (card) {
             console.log(card);
             card.delete();
-            res.redirect('back')
+            res.redirect('/me/my-cards')
         })
     }
 
     getNations(req, res, next) {
         Nation.aggregate([
-
             {
                 $match: {
                     "nation": { $regex: new RegExp('.*' + req.body.nation + '.*', 'i') }
@@ -57,8 +56,6 @@ class CardController {
                     rating: -1
                 }
             },
-
-
         ])
             .then(nations => {
                 res.json(nations);

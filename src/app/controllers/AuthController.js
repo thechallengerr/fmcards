@@ -53,8 +53,8 @@ class AuthController {
             return res.status(401).send({ error: 'Invalid password' });
         }
 
-        const accessTokenLife = process.env.ACCESS_TOKEN_LIFE;
-        const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
+        const accessTokenLife = `${process.env.ACCESS_TOKEN_LIFE}`;
+        const accessTokenSecret = `${process.env.ACCESS_TOKEN_SECRET}`;
 
         const dataForAccessToken = {
             id: user._id,
@@ -68,7 +68,7 @@ class AuthController {
         if (!accessToken) {
             return res
                 .status(401)
-                .send('Đăng nhập không thành công, vui lòng thử lại.');
+                .send('Login failed');
         }
 
         let refreshToken = await generateToken(dataForAccessToken, accessTokenSecret, '7d'); // tạo 1 refresh token ngẫu nhiên

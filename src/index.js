@@ -14,9 +14,9 @@ const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 //connect to db
+dotenv.config();
 db.connect();
 
-dotenv.config();
 //HTTP Logger
 app.use(morgan('combined'));
 
