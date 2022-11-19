@@ -4,8 +4,8 @@
             <h2 class="text-center text-white">All Cards - FM</h2>
         </div>
 
-        <div class="row" style="margin:0;">
-            <div class="col-sm-3 filter-area">
+        <div class="row" id="playerList" style="margin:0;">
+            <div class="col-lg-3 col-sm-12  filter-area">
                 <h3 class="text-center mt-3">Filter Cards</h3>
                 <form action="/cards/filter" method="get">
                     <div class="filter-group">
@@ -99,7 +99,7 @@
                         style="cursor: pointer;">
                 </form>
             </div>
-            <div class="col-sm-9 card-area">
+            <div class="col-lg-9 col-sm-12 card-area">
                 <nav class="mt-4">
                     <ul class="pagination justify-content-end">
                         <li class="page-item {{#if (lte currentPage 1)}} disabled {{else}} {{/if}}">
@@ -175,7 +175,7 @@
                             <div class="club-name">{{this.rating}} | {{this.position}}</div>
 
                         </div>
-                        <div class="card-avg-stats d-flex flex-row col-sm-6">
+                        <div class="card-avg-stats d-flex flex-row col-lg-6 col-sm-7">
                             {{#if (isGK this.position)}}
                             <div class="stat-group">
                                 <span class="stat-number text-uppercase">{{floor (avg this.stats.diving_1)}}</span>
@@ -334,6 +334,24 @@
                 //dropdownLists[i].classList.toggle('show')
             }
         }
-    })
+    });
+
+
+    if (window.screen.width < 478) {
+        document.querySelectorAll('.card-wrapper').forEach(e => {
+            e.classList.add('card-lg');
+            console.log(e.children)
+            e.children[2].classList.replace('nation-sm-image', 'nation-lg-image')
+            e.children[3].classList.replace('event-sm-image', 'event-lg-image')
+            e.children[4].classList.add('player-position-lg');
+            e.children[5].classList.add('player-rating-lg');
+            e.children[6].classList.add('player-name-lg');
+
+        })
+    }
+
+    function scale(e, times) {
+
+    }
 
 </script>

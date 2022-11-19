@@ -2,7 +2,7 @@
 
 </style>
 
-<div class="card-generator d-flex flex-row">
+<div class="card-generator d-flex flex-row row">
     <div class="card-display mt-5">
         <div class="card-container ">
             <div class="card-wrapper card-lg">
@@ -20,33 +20,32 @@
             </div>
         </div>
     </div>
-    <div class="create-form">
+    <div class="create-form col-sm-12">
         <form action="card-generator/save" method="POST" id="cardForm" onsubmit="return false;">
             <div class="form-group">
-                <label for="name">name</label>
+                <label for="name">Name</label>
                 <input type="text" class="form-control" id="player-name" name="player_name"
-                    placeholder="Enter player name" value="Bảy Chuồn">
+                    placeholder="Enter player name" value="Bẩy Chuồn">
             </div>
             <div class="form-group">
-                <label for="position">position</label>
+                <label for="position">Position</label>
                 <input type="text" class="form-control" id="position" value="ST" name="position"
                     placeholder="Enter position">
             </div>
             <div class="form-group">
-                <label for="rating">rating</label>
+                <label for="rating">Rating</label>
                 <input type="number" class="form-control" id="rating" value="100" name="rating"
                     placeholder="Enter rating">
             </div>
             <div class="form-group">
-                <label for="player_img">player image</label>
-                <input type="text" class="form-control" id="player-img" name="player_img"
-                    value="https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_TOTS_ULT_S_A5.png?v=848rffjv3we">
+                <label for="player_img">Player image</label>
+                <input type="text" class="form-control" id="player-img" name="player_img" value="Ronaldo">
                 <div id="player-img-search">
 
                 </div>
             </div>
             <div class="form-group">
-                <label for="nation">nation</label>
+                <label for="nation">Nation</label>
                 <input type="text" class="form-control" id="nation" name="nation" value="Argentina">
                 <div id="nation-search">
 
@@ -54,14 +53,14 @@
             </div>
             <div class="form-group">
                 <label for="background">Background</label>
-                <select class="form-control" id="background">
-                    <option value="None"></option>
+                <select class="form-control" id="background" size="1">
+                    <option value="None">--- Background ---</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="club_event">club</label>
-                <input type="text" class="form-control" id="club" name="club">
+                <label for="club_event">Club</label>
+                <input type="text" class="form-control" id="club" name="club" value="Manchester United">
                 <div id="club-search">
 
                 </div>
