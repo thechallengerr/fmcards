@@ -31,3 +31,17 @@
     </div>
 
 </div>
+<script>
+    if (window.screen.width <= 912) {
+        document.querySelectorAll('.card-wrapper').forEach(e => {
+            e.classList.add('card-lg');
+            console.log(e.children)
+            e.children[2].classList.replace('nation-sm-image', 'nation-lg-image')
+            e.children[3].classList.replace('event-sm-image', 'event-lg-image')
+            e.children[4].classList.add('player-position-lg');
+            e.children[5].classList.add('player-rating-lg');
+            e.children[6].classList.add('player-name-lg');
+
+        })
+    }
+</script>

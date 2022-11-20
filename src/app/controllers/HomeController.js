@@ -9,7 +9,7 @@ class HomeController {
     //[GET] /home
     index(req, res, next) {
         Player.find().sort({ createdAt: -1 }).limit(12).then((playerList) => {
-            Event.find().limit(10)
+            Event.find().limit(8)
                 .then((eventsList) => {
 
                     res.render('home',
