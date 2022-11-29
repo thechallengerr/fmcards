@@ -29,6 +29,20 @@
             {{>footer}}
         </footer>
     </div>
+    <script>
+        if (window.screen.width <= 912) {
+            document.querySelectorAll('.card-wrapper').forEach(e => {
+                e.classList.add('card-lg');
+                console.log(e.children)
+                e.children[2].classList.replace('nation-sm-image', 'nation-lg-image')
+                e.children[3].classList.replace('event-sm-image', 'event-lg-image')
+                e.children[4].classList.add('player-position-lg');
+                e.children[5].classList.add('player-rating-lg');
+                e.children[6].classList.add('player-name-lg');
+
+            })
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

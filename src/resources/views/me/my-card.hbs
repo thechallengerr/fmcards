@@ -35,6 +35,9 @@
             menuBtn.onclick = () => {
                 actions[index].classList.toggle('show')
             }
+            menuBtn.onblur = () => {
+                actions[index].classList.remove('show')
+            }
         })
         actionBtns.forEach((actionBtn, index) => {
             actionBtn.onclick = function () {

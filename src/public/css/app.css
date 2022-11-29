@@ -434,7 +434,10 @@ body {
         width: 100%;
         padding: 0 64px; }
         .card-generator .create-form form .input-group .btn {
-          font-size: 36px; }
+          font-size: 24px; }
+          @media (max-width: 479px) {
+            .card-generator .create-form form .input-group .btn {
+              font-size: 36px; } }
         .card-generator .create-form form .input-group input {
           max-width: 120px; }
           @media (max-width: 479px) {
@@ -470,7 +473,18 @@ body {
   justify-content: center; }
   .cards .stats .stat-group {
     margin: 24px;
-    min-width: 120px; }
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .cards .stats .stat-group {
+        flex: 0 0 25%;
+        max-width: 25%; } }
+    @media (max-width: 479px) {
+      .cards .stats .stat-group {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%; } }
     .cards .stats .stat-group .stat-avg {
       display: flex;
       flex-direction: column;
@@ -496,7 +510,8 @@ body {
       .cards .stats .stat-group .stat-avg .avg {
         font-size: 48px; }
     .cards .stats .stat-group .stat-detail-list {
-      margin-top: 48px; }
+      margin-top: 48px;
+      width: 100%; }
       .cards .stats .stat-group .stat-detail-list .stat-detail-item {
         display: flex;
         justify-content: space-between; }
@@ -504,10 +519,10 @@ body {
           color: #fff; }
           @media (max-width: 479px) {
             .cards .stats .stat-group .stat-detail-list .stat-detail-item .stat-label {
-              font-size: 30px; } }
+              font-size: 28px; } }
           @media (min-width: 768px) and (max-width: 1023px) {
             .cards .stats .stat-group .stat-detail-list .stat-detail-item .stat-label {
-              font-size: 30px; } }
+              font-size: 28px; } }
         .cards .stats .stat-group .stat-detail-list .stat-detail-item .stat-data {
           color: #35a936; }
           @media (max-width: 479px) {
@@ -546,6 +561,12 @@ body {
   max-width: 250px;
   color: #fff;
   position: relative; }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .gauge {
+      max-width: 180px; } }
+  @media (max-width: 479px) {
+    .gauge {
+      max-width: 180px; } }
   .gauge div .avg {
     font-size: 48px;
     line-height: 36px; }

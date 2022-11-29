@@ -602,7 +602,11 @@ body {
                 width: 100%;
                 padding: 0 64px;
                 .btn {
+                    font-size: 24px;
+                    @include mobile{
                     font-size: 36px;
+
+                    }
                 }
                 input {
                     max-width: 120px;
@@ -655,6 +659,17 @@ body {
         .stat-group {
             margin: 24px;
             min-width: 120px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            @include tablet{
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+            @include mobile{
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
             .stat-avg {
                 display: flex;
                 flex-direction: column;
@@ -691,17 +706,18 @@ body {
             }
             .stat-detail-list {
                 margin-top: 48px;
+                width: 100%;
                 .stat-detail-item {
                     display: flex;
                     justify-content: space-between;
                     .stat-label {
                         color: #fff;
                         @include mobile{
-                            font-size: 30px;
+                            font-size: 28px;
                             
                         }
                         @include tablet{
-                            font-size: 30px;
+                            font-size: 28px;
                             
                         }
                     }
@@ -765,9 +781,14 @@ body {
 .gauge {
     width: 100%;
     max-width: 250px;
-    // font-family: "Roboto", sans-serif;
     color: #fff;
     position: relative;
+    @include tablet(){
+        max-width: 180px;
+    }
+    @include mobile(){
+        max-width: 180px;
+    }
     div{
         .avg {
             font-size: 48px;
