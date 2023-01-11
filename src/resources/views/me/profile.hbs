@@ -1,0 +1,122 @@
+<div id="profile" class=" d-flex align-items-center justify-content-center flex-column mt-5">
+    <div class="profile-avatar">
+        <div class="avatar">
+            {{#if user.userAvatar}}
+            <div style="background-image:url('{{user.userAvatar}}') ;" alt="" class="rounded-circle avatar-img"></div>
+            {{else}}
+            <div style="background-image:url('https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg')"
+                class="rounded-circle avatar-img"></div>
+
+            {{/if}}
+            <div class="edit-avatar justify-content-center">
+                <i class="fa-solid fa-pen" data-toggle="modal" data-target="#choose-avatar-modal"></i>
+            </div>
+        </div>
+        <div class="username text-center mt-2">
+            <span>@{{user.username}}</span>
+        </div>
+    </div>
+    <div id="my-card">
+        <h3 class="text-white mt-3">My Card</h3>
+        <div class="card-list">
+            {{#each cards}}
+            {{>card-editable _id=_id background=background player_img=player_img flag=flag
+            club=club position=position rating=rating player_name=player_name}}
+            {{/each}}
+        </div>
+
+
+    </div>
+</div>
+<div class="modal fade" id="delete-card-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-darkpurple">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Warning !!!</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This card is going to be stored in recylced bin. Continue ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="delete-card-btn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="choose-avatar-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-darkpurple">
+            <div class="modal-header">
+                <h5 class="modal-title text-white">Update Avatar</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                You can use image link or upload a new image
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="delete-card-btn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form name="delete-card-form" method="post" style="display: none;"></form>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuBtns = document.querySelectorAll('.action-btn')
+        const actions = document.querySelectorAll('.action');
+        const actionBtns = document.querySelectorAll('.action-item');
+        menuBtns.forEach((menuBtn, index) => {
+            menuBtn.onclick = () => {
+                actions[index].classList.toggle('show')
+            }
+            menuBtn.onblur = () => {
+                actions[index].classList.remove('show')
+            }
+        })
+        actionBtns.forEach((actionBtn, index) => {
+            actionBtn.onclick = function () {
+                actionBtn.parentElement.parentElement.classList.remove('show')
+            }
+        });
+
+        var deleteBtn = document.querySelector('#delete-card-btn');
+        var deleteForm = document.forms['delete-card-form'];
+        var cardId;
+        $('#delete-card-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            cardId = button.data('id')
+            console.log(cardId)
+
+        });
+
+
+
+        deleteBtn.onclick = function () {
+            deleteForm.action = "/card-generator/" + cardId + '?_method=DELETE';
+
+            deleteForm.submit();
+        }
+
+    })
+
+    if (window.screen.width <= 912) {
+        document.querySelectorAll('.card-wrapper').forEach(e => {
+            e.classList.add('card-lg');
+            console.log(e.children)
+            e.children[2].classList.replace('nation-sm-image', 'nation-lg-image')
+            e.children[3].classList.replace('event-sm-image', 'event-lg-image')
+            e.children[4].classList.add('player-position-lg');
+            e.children[5].classList.add('player-rating-lg');
+            e.children[6].classList.add('player-name-lg');
+
+        })
+    }
+
+</script>

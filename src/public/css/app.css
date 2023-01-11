@@ -676,3 +676,36 @@ body {
   @media (max-width: 479px) {
     .event-list {
       grid-template-columns: repeat(2, 1fr); } }
+
+#profile .profile-avatar .avatar {
+  position: relative; }
+  #profile .profile-avatar .avatar .avatar-img {
+    background-size: cover;
+    background-position: center;
+    width: 120px;
+    height: 120px;
+    cursor: pointer; }
+    #profile .profile-avatar .avatar .avatar-img:hover + .edit-avatar {
+      display: flex;
+      cursor: pointer; }
+  #profile .profile-avatar .avatar .edit-avatar {
+    display: none;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    position: absolute;
+    top: 80px;
+    width: 120px;
+    height: 60px;
+    background-color: #262c49;
+    opacity: 0.7; }
+    #profile .profile-avatar .avatar .edit-avatar i.fa-pen {
+      color: #fff;
+      margin-top: 12px;
+      cursor: pointer; }
+    #profile .profile-avatar .avatar .edit-avatar:hover {
+      display: flex;
+      cursor: pointer; }
+
+#profile .profile-avatar .username span {
+  font-size: 20px;
+  color: #1f74ff; }

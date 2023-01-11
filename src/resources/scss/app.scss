@@ -922,6 +922,8 @@ body {
             }
         }
     }
+
+    
     @include tablet {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -931,6 +933,55 @@ body {
     }
     
 }
+
+// Profile Page CSS
+#profile{
+       .profile-avatar {
+        .avatar {
+            position: relative;
+            .avatar-img{
+                background-size: cover;
+                background-position: center;
+                width: 120px;
+                height: 120px;
+                cursor: pointer;
+                &:hover +.edit-avatar{
+                    
+                    display: flex;
+                    cursor: pointer;
+                }
+            }
+            .edit-avatar {
+                display: none;
+                border-bottom-left-radius: 60px ;
+                border-bottom-right-radius: 60px ;
+                position: absolute;
+                top: 80px;
+                width:120px;
+                height: 60px;
+                background-color: #262c49;
+                opacity: 0.7;
+                i.fa-pen {
+                    color: #fff;
+                    margin-top: 12px;
+                    cursor: pointer;
+                }
+                &:hover{
+                    display: flex;
+                    cursor: pointer;
+                }
+            }
+        }
+        .username {
+            span{
+                font-size: 20px;
+                color: #1f74ff;
+            }
+        }
+       } 
+}
+
+//End Profile Page CSS
 
 
 

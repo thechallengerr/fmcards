@@ -8,7 +8,7 @@ var User = new Schema({
     password: { type: String, lowercase: true },
     email: { type: String, lowercase: true },
     refreshToken: { type: String, },
-    userAvatar: { type: String },
+    userAvatar: { type: String, default: "https://png.pngtree.com/png-clipart/20210129/ourlarge/pngtree-man-default-avatar-png-image_2813122.jpg" },
 
 }, {
     timestamps: true,
