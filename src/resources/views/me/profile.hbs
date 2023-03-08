@@ -17,7 +17,7 @@
         </div>
     </div>
     <div id="my-card">
-        <h3 class="text-white mt-3">My Card</h3>
+        <h3 class="text-white mt-3">My Cards</h3>
         <div class="card-list">
             {{#each cards}}
             {{>card-editable _id=_id background=background player_img=player_img flag=flag
@@ -57,16 +57,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                You can use image link or upload a new image
+
+                <form method="post" enctype="multipart/form-data" action="/me/update-avatar" name="update-avatar-form">
+                    <div class="form-group">
+                        <label for="avatar">You can use image link or upload a new image</label>
+                        <input type="file" class="form-control-file" id="avatar" name="avatar">
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="delete-card-btn" class="btn btn-danger">Delete</button>
+                <button type="submit" id="update-avatar-btn" class="btn btn-danger">Update Avatar</button>
             </div>
         </div>
     </div>
 </div>
 <form name="delete-card-form" method="post" style="display: none;"></form>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const menuBtns = document.querySelectorAll('.action-btn')
@@ -88,6 +95,10 @@
 
         var deleteBtn = document.querySelector('#delete-card-btn');
         var deleteForm = document.forms['delete-card-form'];
+        var updateAvatarBtn = document.querySelector('#update-avatar-btn');
+        var updateAvatarForm = document.forms['update-avatar-form'];
+        console.log(updateAvatarBtn, updateAvatarForm);
+
         var cardId;
         $('#delete-card-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
@@ -102,6 +113,10 @@
             deleteForm.action = "/card-generator/" + cardId + '?_method=DELETE';
 
             deleteForm.submit();
+        }
+
+        updateAvatarBtn.onclick = function () {
+            updateAvatarForm.submit();
         }
 
     })

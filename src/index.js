@@ -13,6 +13,9 @@ const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' });
+
 //connect to db
 dotenv.config();
 db.connect();
@@ -25,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //urlencoded + json
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//File upload
 
 // cookie parser
 app.use(cookieParser());
