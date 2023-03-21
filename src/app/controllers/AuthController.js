@@ -101,7 +101,7 @@ class AuthController {
 
     async getCurrentUser(req, res, next) {
         if (!req.cookies.accessToken) {
-            res.status(501).json({ error: 'Bạn cần đăng nhập để có thể lưu thẻ này' });
+            res.status(501).json({ error: 'Login to continue' });
             return;
         }
         var data = await jwt.verify(req.cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
