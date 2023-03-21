@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 async function connect() {
     try {
 
-        await mongoose.connect('mongodb+srv://hoangnd171:MkFlpEPktq4cE4xX@cluster0.hcozx.mongodb.net/fmcards', {
+        await mongoose.connect('mongodb+srv://gnoah1701:m5XNcQmNLJ1SxMgc@fmcards.pupqiel.mongodb.net/fmcards', {
 
         });
         console.log('Connected successfully');
